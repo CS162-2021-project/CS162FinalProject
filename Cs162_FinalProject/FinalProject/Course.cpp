@@ -7,7 +7,7 @@ using namespace std;
 
 void Create_New_Year(Year*& pHead, int& n, char* year) {
 	ofstream fout;
-	fout.open("C:\\GitHub\\CS162FinalProject\\Cs162_FinalProject\\Data\\year.txt");
+	fout.open("C:\\GitHub\\CS162FinalProject\\Data\\year.txt");
 
 	Year* pCur = pHead;
 	n += 1;
@@ -30,7 +30,7 @@ void Create_New_Year(Year*& pHead, int& n, char* year) {
 	}
 	fout.close();
 
-	char dirD[] = "C:\\GitHub\\CS162FinalProject\\Cs162_FinalProject\\Data\\";
+	char dirD[] = "C:\\GitHub\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, year);
