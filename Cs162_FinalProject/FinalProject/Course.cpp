@@ -38,7 +38,6 @@ void Create_New_Year(Year*& pHead, int& n, char* year) {
 	strcat(c, year);
 	_mkdir(c);
 	
-
 	strcat(c, "\\semester.txt");
 
 	fout.open(c);
