@@ -100,4 +100,5 @@ struct StuNode
 	Student stu;
 	StuNode* pNext = nullptr;
 };
+
 #endif // !_HEADER_H_
