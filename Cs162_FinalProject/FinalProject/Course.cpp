@@ -2,6 +2,8 @@
 #include<string>
 #include"Course.h"
 #include"Header.h"
+#include<direct.h>
+#pragma warning(disable : 4996)
 
 using namespace std;
 
@@ -34,7 +36,9 @@ void Create_New_Year(Year*& pHead, int& n, char* year) {
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, year);
-	//CreateDirectoryA(c, NULL);
+	_mkdir(c);
+	
+
 	strcat(c, "\\semester.txt");
 
 	fout.open(c);
