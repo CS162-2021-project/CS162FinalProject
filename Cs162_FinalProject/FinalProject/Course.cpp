@@ -45,7 +45,7 @@ void Create_New_Year(Year*& pHead, int& n, char* year) {
 	fout.close();
 }
 
-void createNeWClass(Year*& pHead, int& n, char* semester, char* year, char* className)
+void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* className)
 {
 	char dirD[] = "C:\\Github\\CCS162FinalProject\\Data\\";
 	char c[500] = "";
