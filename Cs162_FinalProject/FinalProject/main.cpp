@@ -1,5 +1,5 @@
 #include <iostream>
-#include"Function.h"
+#include"Staff.h"
 
 using namespace std;
 
