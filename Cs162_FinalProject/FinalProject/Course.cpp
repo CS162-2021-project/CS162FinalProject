@@ -88,5 +88,4 @@ void createNew_Class(Year*& pHead, int& n, char* semester, char* year, char* cla
 	strcat(d, "\\");
 	strcat(d, className);
 	_mkdir(c);
-
 }
