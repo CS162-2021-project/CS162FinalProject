@@ -9,6 +9,6 @@
 void Create_New_Year(Year*& pHead, int& n, char* year);
 
 //Create class
-void createNewClass(Year*& pHead, char* semester, char* year, char* className)
+void createNewClass(Year*& pHead, int &n, char* semester, char* year, char* className)
   
 #endif // !_COURSE_H_
