@@ -89,7 +89,7 @@ void createNewSemester(Year*& pHead, int& n, char* semester, char* year)
 
 void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* className)
 {
-	char dirD[] = "E:\\Github\\CCS162FinalProject\\Data\\";
+	char dirD[] = "E:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, year);
