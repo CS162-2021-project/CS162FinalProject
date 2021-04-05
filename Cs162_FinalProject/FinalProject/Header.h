@@ -101,4 +101,21 @@ struct StuNode
 	StuNode* pNext = nullptr;
 };
 
+struct dayPerformed {
+	char d1[5];
+	char d2[5];
+	char s1[5];
+	char s2[5];
+};
+
+struct Course {
+	char id[101];
+	char name[101];
+	char lecturerName[101];
+	int numberOfCredits;
+	int maxStudent;
+	dayPerformed date;
+	Course* next = nullptr;
+};
+
 #endif // !_HEADER_H_

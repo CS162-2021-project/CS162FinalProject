@@ -17,6 +17,9 @@ void createNewSemester(Year*& pHead, int& n, char* semester, char* year);
 
 //Create class
 
-void createNewClass(Year*& pHead, int &n, char* semester, char* year, char* className);
+void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* className);
+
+//Create Course
+void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
   
 #endif // !_COURSE_H_
