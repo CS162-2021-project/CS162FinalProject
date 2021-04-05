@@ -14,9 +14,12 @@ How to work on your task:
 
 Step 1: Add a task in Input.cpp
 Step 2: Add a task in main.cpp
-Step 3: Add a function in *.h (* is the corresponding file, for example Course.h or Staff.h)
-Step 4: Add a function in *.cpp (* is the corresponding file, for example Course.cpp or Staff.cpp)
+Step 3: Add a function in \*.h (\* is the corresponding file, for example Course.h or Staff.h)
+Step 4: Add a function in \*.cpp (\* is the corresponding file, for example Course.cpp or Staff.cpp)
 Step 5 (IMPORTANT): Commit to a branch other than master, let the name of the branch be your updated task (for example, 3 or 5 or ...), and then we will review and merge it with master later
 
+Optinal : You might need to change the path in \*.cpp (for example, E:\\github\\ bla bla)
+
 Will be updated...
+
  
