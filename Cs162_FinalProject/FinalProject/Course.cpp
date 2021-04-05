@@ -208,7 +208,7 @@ void deleteCourse (Course*& pHead, char *courseID) {
 }
 
 void updateCourse (Course*& pHead) {
-    cout << "please enter the course ID that you want to update: ";
+    cout << "Please enter the course ID that you want to update: ";
     char ID[101];
     cin.ignore(1001, '\n');
     cin.get(ID, 101, '\n');

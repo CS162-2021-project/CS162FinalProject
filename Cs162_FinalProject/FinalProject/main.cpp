@@ -52,7 +52,13 @@ int main() {
 		}
 
 		if (respond == 10) {
-			
+			updateCourse(pCourseHead);			
+		}
+
+		if (respond == 11) {
+			cout << "Please input the course ID you wish to delete: ";
+			char *courseID = new char[101]; cin >> courseID;
+			delete(pCourseHead, courseID);
 		}
 
 		if (respond == 0) { // End the program
