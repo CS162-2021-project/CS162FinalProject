@@ -28,5 +28,9 @@ void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
 // Delete Course
  
 void deleteCourse (Course*& pHead, char *courseID);
+
+// Update Course
+
+void updateCourse (Course*& pHead);
   
 #endif // !_COURSE_H_
