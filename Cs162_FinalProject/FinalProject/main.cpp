@@ -51,6 +51,10 @@ int main() {
 			addNewCourse(pCourseHead, nCourse, semesterInput, yearInput);
 		}
 
+		if (respond == 10) {
+			
+		}
+
 		if (respond == 0) { // End the program
 			break;
 		}

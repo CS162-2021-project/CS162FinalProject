@@ -198,7 +198,7 @@ void deleteCourse (Course*& pHead, char *courseID) {
         delete pDel;
     } else {
         Course *pCur = pHead;
-        while (pCur && pCur->pNext->id != courseID) {
+        while (pCur->pNext && pCur->pNext->id != courseID) {
             pCur = pCur->pNext;
         }
         Course *pDel = pCur->pNext;
