@@ -8,19 +8,21 @@ using namespace std;
 int main() {
 	//Input interfare
 
+	int nYear = 0;
+	int nClass = 0;
+	int nSemester = 0;
+
 	while(1) {
 		int respond = inputInterfare(); // Index of the task
 		
 		Year* pHead = nullptr;
 
-		int nYear = 0;
 		if (respond == 1) { // Create a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[101]; cin >> yearInput;
 			Create_New_Year(pHead, nYear, yearInput);
 		}
 			
-		int nClass = 0;
 		if (respond == 2) { // Create a class in a semester in a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[101]; cin >> yearInput;
@@ -31,7 +33,6 @@ int main() {
 			createNewClass(pHead, nClass, semesterInput, yearInput, className);
 		}
 
-		int nSemester = 0;
 		if (respond == 6) { // Create a semester in a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[101]; cin >> yearInput;

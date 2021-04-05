@@ -9,17 +9,24 @@
 
 int inputInterfare();
 
-//Create year semester
+// Create year
 
 void Create_New_Year(Year*& pHead, int& n, char* year);
 
+// Create Semester
+
 void createNewSemester(Year*& pHead, int& n, char* semester, char* year);
 
-//Create class
+// Create class
 
 void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* className);
 
-//Create Course
+// Create Course
+
 void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
+
+// Delete Course
+ 
+void deleteCourse (Course*& pHead, char *courseID);
   
 #endif // !_COURSE_H_

@@ -115,7 +115,7 @@ struct Course {
 	int numberOfCredits;
 	int maxStudent;
 	dayPerformed date;
-	Course* next = nullptr;
+	Course* pNext = nullptr;
 };
 
 #endif // !_HEADER_H_

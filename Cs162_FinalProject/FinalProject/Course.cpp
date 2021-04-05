@@ -133,7 +133,7 @@ void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* clas
 }
 
 void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "E:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, year);
@@ -154,11 +154,11 @@ void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
 			pCur = pHead;
 		}
 		else {
-			while (pCur->next) {
-				pCur = pCur->next;
+			while (pCur->pNext) {
+				pCur = pCur->pNext;
 			}
-			pCur->next = new Course;
-			pCur = pCur->next;
+			pCur->pNext = new Course;
+			pCur = pCur->pNext;
 		}
 		// get info
 		cin.ignore(1001, '\n');
@@ -191,7 +191,7 @@ void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
 }
 
 
-void deleteCourse (Course*& pHead, int courseID) {
+void deleteCourse (Course*& pHead, char *courseID) {
     if (pHead->id == courseID) {
         Course *pDel = pHead;
         pHead = pHead->pNext;
@@ -213,7 +213,7 @@ void updateCourse (Course*& pHead) {
     cin.ignore(1001, '\n');
     cin.get(ID, 101, '\n');
     Course *pCur = pHead;
-    while (pCur && pCur->ID != ID) {
+    while (pCur && pCur->id != ID) {
         pCur = pCur->pNext;
     }
     
@@ -243,10 +243,10 @@ void updateCourse (Course*& pHead) {
         cin.get(pCur->lecturerName, 101, '\n');
     } else if (x == 4) {
         cout << "New number of credits:" ;
-        cin << pCur->numberOfCredits;
+        cin >> pCur->numberOfCredits;
     } else if (x == 5) {
         cout << "New max students:" ;
-        cin << pCur->maxStudents;
+        cin >> pCur->maxStudent;
     } else {
         cout << "New day 1 and shift 1:";
         cin >> pCur->date.d1 >> pCur->date.s1;
