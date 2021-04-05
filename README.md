@@ -18,7 +18,14 @@ Step 3: Add a function in \*.h (\* is the corresponding file, for example Course
 Step 4: Add a function in \*.cpp (\* is the corresponding file, for example Course.cpp or Staff.cpp)
 Step 5 (IMPORTANT): Commit to a branch other than master, let the name of the branch be your updated task (for example, 3 or 5 or ...), and then we will review and merge it with master later
 
-Optinal : You might need to change the path in \*.cpp (for example, E:\\github\\ bla bla)
+Optinal : 
+ You might need to change the path in \*.cpp (for example, E:\\github\\ bla bla)
+ If you want to run your code, type the following in the terminal which has lead to our .cpp path:
+
+g++ std=c++11 main.cpp course.cpp input.cpp -o build
+
+and then run build.exe
+
 
 Will be updated...
 
