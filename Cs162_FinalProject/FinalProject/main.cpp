@@ -8,19 +8,21 @@ using namespace std;
 int main() {
 	//Input interfare
 
+	Year* pYearHead = nullptr;
 	int nYear = 0;
 	int nClass = 0;
 	int nSemester = 0;
 
+	Course* pCourseHead = nullptr;	
+	int nCourse = 0;
+
 	while(1) {
 		int respond = inputInterfare(); // Index of the task
-		
-		Year* pHead = nullptr;
 
 		if (respond == 1) { // Create a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[101]; cin >> yearInput;
-			Create_New_Year(pHead, nYear, yearInput);
+			Create_New_Year(pYearHead, nYear, yearInput);
 		}
 			
 		if (respond == 2) { // Create a class in a semester in a year
@@ -30,7 +32,7 @@ int main() {
 			char *semesterInput = new char[101]; cin >> semesterInput;
 			cout << "Please input the class name: ";
 			char *className = new char[101]; cin >> className;
-			createNewClass(pHead, nClass, semesterInput, yearInput, className);
+			createNewClass(pYearHead, nClass, semesterInput, yearInput, className);
 		}
 
 		if (respond == 6) { // Create a semester in a year
@@ -38,7 +40,15 @@ int main() {
 			char *yearInput = new char[101]; cin >> yearInput;
 			cout << "Please input the semester: ";
 			char *semesterInput = new char[101]; cin >> semesterInput;
-			createNewSemester(pHead, nSemester, semesterInput, yearInput);
+			createNewSemester(pYearHead, nSemester, semesterInput, yearInput);
+		}
+
+		if (respond == 8) {
+			cout << "Please input the year: ";
+			char *yearInput = new char[101]; cin >> yearInput;
+			cout << "Please input the semester: ";
+			char *semesterInput = new char[101]; cin >> semesterInput;
+			addNewCourse(pCourseHead, nCourse, semesterInput, yearInput);
 		}
 
 		if (respond == 0) { // End the program
