@@ -25,8 +25,12 @@ void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* clas
 
 void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
 
-// Delete Course
- 
+//View list of all course available
+
+void viewListOfCourse(Course* pHead);
+
+ // Delete Course
+
 void deleteCourse (Course*& pHead, char *courseID);
 
 // Update Course

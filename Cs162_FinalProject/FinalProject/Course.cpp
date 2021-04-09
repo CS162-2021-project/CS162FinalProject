@@ -144,7 +144,7 @@ void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
 	//
 
 	ofstream fout;
-	fout.open(c);
+	fout.open(c , std::ios_base::app);
 	if (fout.is_open()) {
 		n += 1;
 		fout << n << endl;
@@ -253,4 +253,46 @@ void updateCourse (Course*& pHead) {
         cout << "New day 2 and shift 2:";
         cin >> pCur->date.d2 >> pCur->date.s2;
     }
+}
+
+void viewListOfCourse(Course* pHead) {
+	while (pHead) {
+		cout << "Course ID and Name:" << pHead->id << " " << pHead->name;
+		cout << "Occur in :" << pHead->date.d1 << pHead->date.s1 << " ";
+		cout << pHead->date.d2 <<pHead->date.s2 << endl;
+
+		// move to next course
+		pHead = pHead->pNext;
+	}
+}
+
+// a course registration session is active,student can do :
+
+void registrationSession() {
+	cout << "You have to log in to the system first:";
+	// Login to the system
+	int n;
+	cout << "Choose one of these function:" << endl;
+	cout << "1.Enroll in a course." << endl;
+	cout << "2.View list of enrolled courses." << endl;
+	cout << "3.Remove a course from the enrolled list." << endl;
+	cout << "Which one you want to do ? Please input a number:";
+	cin >> n;
+	switch(n)
+	{
+	case 1 : //enroll in a course
+		break;
+	case 2 : //List of enrolled student
+		break;
+	case 3 : // remove course
+		break;
+	default:
+		break;
+	}
+}
+
+void enrollInACourse(Course* pHead) {
+	cout << "Course available:" << endl;
+	viewListOfCourse(pHead);
+
 }

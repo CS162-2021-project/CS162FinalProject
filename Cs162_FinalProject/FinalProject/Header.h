@@ -102,9 +102,9 @@ struct StuNode
 };
 
 struct dayPerformed {
-	char d1[5];
+	char d1[5]; // day
 	char d2[5];
-	char s1[5];
+	char s1[5];	// shift
 	char s2[5];
 };
 
@@ -116,6 +116,7 @@ struct Course {
 	int maxStudent;
 	dayPerformed date;
 	Course* pNext = nullptr;
+	Student* student;
 };
 
 #endif // !_HEADER_H_
