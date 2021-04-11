@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include<string.h>
 #include "Course.h"
 #include "Header.h"
 
@@ -291,8 +292,15 @@ void registrationSession() {
 	}
 }
 
-void enrollInACourse(Course* pHead) {
+void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) {
+	char ID[101];
+	int cnt = 0;
 	cout << "Course available:" << endl;
 	viewListOfCourse(pHead);
+	cout << "PLease input the ID of Course in which you want to enroll :";
+	cin.ignore(1001, '\n');
+	cin.get(ID, 101, '\n');	
 
+
+	
 }
