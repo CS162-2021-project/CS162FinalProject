@@ -50,7 +50,7 @@ void addStudent(Student*& pStudent, char* yearName, char* className) {
 	Student newStu;
     inputStudent(newStu);
 
-	fostream fOut(d);
+	ofstream fOut(d);
 }
 
 void addStudentByCSV() {

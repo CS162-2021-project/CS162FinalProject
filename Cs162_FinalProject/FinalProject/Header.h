@@ -1,6 +1,16 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
 
+struct Time;
+struct Date;
+struct Student;
+struct Scoreboard;
+struct Class;
+struct Year;
+struct Semester;
+struct dayPerformed;
+struct Course;
+
 struct Time {
 	int hours;
 	int mins;
@@ -12,15 +22,6 @@ struct Date {
 	int year;
 };
 
-struct Scoreboard {
-	Student stu;
-	float midterm;
-	float final;
-	float bonus;
-	float total;
-	Scoreboard *scoreboardNext;
-};
-
 struct Student
 {
 	char* username;
@@ -30,6 +31,16 @@ struct Student
 	Date DOB;
 	char* sClass;
 	int gender; // 0 if male, 1 if female
+	Course *pCourse;
+};
+
+struct Scoreboard {
+	Student stu;
+	float midterm;
+	float final;
+	float bonus;
+	float total;
+	Scoreboard *scoreboardNext;
 };
 
 struct Class {
@@ -43,6 +54,11 @@ struct Year {
 	Class *pClass;
 	Semester *pSemester;
 	Year *yearNext;
+};
+
+struct Semester {
+	Course *pCourse;
+	Semester *nextSemester;
 };
 
 struct dayPerformed {
@@ -61,7 +77,7 @@ struct Course {
 	dayPerformed date;
 	Date startDate, endDate;
 	Course* pNext = nullptr;
-	Student* student;
+	Student* pStudent;
 };
 
 #endif // !_HEADER_H_
