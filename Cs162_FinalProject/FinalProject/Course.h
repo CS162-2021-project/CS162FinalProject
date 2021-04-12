@@ -11,15 +11,11 @@ int inputInterfare();
 
 // Create year
 
-void Create_New_Year(Year*& pHead, int& n, char* year);
+void createNewYear(Year*& pHead, char* year);
 
 // Create Semester
 
 void createNewSemester(Year*& pHead, int& n, char* semester, char* year);
-
-// Create class
-
-void createNewClass(Year*& pHead, int& n, char* semester, char* year, char* className);
 
 // Create Course
 
