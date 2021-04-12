@@ -16,7 +16,7 @@ int main() {
 
 		if (respond == 1) { // Create a year
 			cout << "Please input the year: ";
-			char *yearInput = new char[21]; cin >> yearInput;
+			char *yearName = new char[21]; cin >> yearName;
 			createNewYear(pYear, yearInput);
 			cout << "Done creating year\n\n";
 
@@ -25,10 +25,17 @@ int main() {
 			
 		if (respond == 2) { // Create a class in a semester in a year
 			cout << "Please input the year: ";
-			char *yearInput = new char[21]; cin >> yearInput;
+			char *yearName = new char[21]; cin >> yearName;
 			cout << "Please input the class name: ";
 			char *className = new char[21]; cin >> className;
-			createNewClass(pYear, yearInput, className);
+
+			Year* curYear = pYear;
+			while (cur != nullptr && cur -> YearName != yearName)
+				curYear = curYear -> yearNext;
+			if (cur == nullptr) 
+				cout << "The year you input is not in the data, please create the year first!!";
+			else	
+				createNewClass(pYear -> pClass, yearName, className);
 			cout << "Done creating class\n\n";
 
 			delete []yearInput;
@@ -49,7 +56,14 @@ int main() {
 			char *yearInput = new char[21]; cin >> yearInput;
 			cout << "Please input the semester: ";
 			char *semesterInput = new char[21]; cin >> semesterInput;
-			createNewSemester(pYear, semesterInput, yearInput);
+
+			Year* curYear = pYear;
+			while (cur != nullptr && cur -> YearName != yearName)
+				curYear = curYear -> yearNext;
+			if (cur == nullptr) 
+				cout << "The year you input is not in the data, please create the year first!!";
+			else
+				createNewSemester(pYear -> pSemester, semesterInput, yearInput);
 			cout << "Done creating semester\n\n";
 
 			delete []yearInput;
@@ -66,6 +80,9 @@ int main() {
 
 			delete []yearInput;
 			delete []semesterInput;
+		}
+
+		if (respond == 9) {
 		}
 
 		if (respond == 10) {

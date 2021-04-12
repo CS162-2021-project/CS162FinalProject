@@ -1,19 +1,16 @@
-// 8.
-
 #include<bits/stdc++.h>
-#include<string.h>
 #include "Course.h"
 #include "Header.h"
 
 using namespace std;
 
-void addNewCourse(Course*& pCourse, int& n, char* semester, char* year) {
-    char dirD[] = "E:\\Github\\CS162FinalProject\\Data\\";
+void addNewCourse(Course*& pCourse, char* semesterName, char* yearName) {
+    char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
     char c[500] = "";
     strcat(c, dirD);
-    strcat(c, year);
+    strcat(c, yearName);
     strcat(c, "\\");
-    strcat(c, semester);
+    strcat(c, semesterName);
     strcat(c, "\\course.txt");
 
     //
@@ -21,8 +18,6 @@ void addNewCourse(Course*& pCourse, int& n, char* semester, char* year) {
     ofstream fout;
     fout.open(c , std::ios_base::app);
     if (fout.is_open()) {
-        n += 1;
-        fout << n << endl;
         Course* pCur = pCourse;
         if (!pCourse) {
             pCourse = new Course;

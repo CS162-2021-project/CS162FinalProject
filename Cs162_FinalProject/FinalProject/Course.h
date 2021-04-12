@@ -20,11 +20,11 @@ void createNewSemester(Semester*& pSemester, char* semester, char* year);
 
 // Create Course
 
-void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
+void addNewCourse(Course*& pCourse, char* semester, char* year);
 
 //View list of all course available
 
-void viewListOfCourse(Course* pHead);
+void viewListOfCourse(Course* pCourse);
 
  // Delete Course
 

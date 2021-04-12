@@ -1,7 +1,4 @@
-// 9.
-
 #include<bits/stdc++.h>
-#include<string.h>
 #include "Course.h"
 #include "Header.h"
 

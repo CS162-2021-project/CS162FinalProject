@@ -10,6 +10,7 @@ int inputInterfare() {
 	cout << "4: Add new students by import a CSV file\n";
 	cout << "6: Create a semester, to a specific year\n";
 	cout << "8: Adding a course, to a specific semester, to a specific year\n";
+	cout << "9: View list of courses\n";
 	cout << "10: Update a course information\n";
 	cout << "11: Delete a course\n";
 	cout << "0: End the current program\n";

@@ -14,6 +14,6 @@ void addStudent(Student*& pStudent, char* yearName, char* className);
 
 // Add student by CSV file
 
-void addStudentCSV();
+void addStudentCSV(Student*& pStudent);
 
 #endif

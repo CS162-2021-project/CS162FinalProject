@@ -4,8 +4,7 @@
 
 using namespace std;
 
-void inputStudent(Student &newStu) {
-	Student stu;
+void inputStudent(Student &stu) {
 	cout << "Input the student's ID: ";
 	stu.ID = new char[21];
 	cin >> stu.ID;
