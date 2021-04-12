@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "Header.h"
+#include "Class.h"
 #include "Course.h"
 #include "Staff.h"
 
@@ -16,7 +17,7 @@ int main() {
 		if (respond == 1) { // Create a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[21]; cin >> yearInput;
-			Create_New_Year(pYear, yearInput);
+			createNewYear(pYear, yearInput);
 			cout << "Done creating year\n\n";
 
 			delete []yearInput;
@@ -25,15 +26,12 @@ int main() {
 		if (respond == 2) { // Create a class in a semester in a year
 			cout << "Please input the year: ";
 			char *yearInput = new char[21]; cin >> yearInput;
-			cout << "Please input the semester: ";
-			char *semesterInput = new char[21]; cin >> semesterInput;
 			cout << "Please input the class name: ";
 			char *className = new char[21]; cin >> className;
-			createNewClass(pYear, emesterInput, yearInput, className);
+			createNewClass(pYear, yearInput, className);
 			cout << "Done creating class\n\n";
 
 			delete []yearInput;
-			delete []semesterInput;
 			delete []className;
 		}
 

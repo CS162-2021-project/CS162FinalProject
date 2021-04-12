@@ -3,8 +3,7 @@
 
 using namespace std;
 
-void createNewClass(Year*& pYear, char* yearName, char* className)
-{
+void createNewClass(Class*& pClass, char* yearName, char* className) {
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
@@ -14,31 +13,30 @@ void createNewClass(Year*& pYear, char* yearName, char* className)
 	ofstream fout;
 	fout.open(c);
 
-	Year* cur = pYear;
+	Class* cur = pClass;
 
-	if (pHead == nullptr) {
-		pHead = new Year;
-		pHead->className = className;
-		pHead->pNext = nullptr;
-		fout << pHead->className;
+	if (pClass == nullptr) {
+		pClass = new Class;
+		pClass -> ClassName = className;
+		pClass -> classNext = nullptr;
+		fout << pClass -> ClassName;
 	}
 	else {
-		while (cur != nullptr) {
-			fout << cur->className << endl;
-			cur = cur->pNext;
+		while (cur -> classNext != nullptr) {
+			fout << cur -> ClassName << endl;
+			cur = cur -> classNext;
 		}
-		cur = new Year;
-		cur->className = className;
-		fout << cur->className;
-		cur->pNext = nullptr;
+		cur -> classNext = new Class;
+		cur = cur -> classNext;
+		cur -> ClassName = className;
+		fout << cur -> ClassName;
+		cur -> classNext = nullptr;
 	}
 	fout.close();
 
 	char d[500] = "mkdir ";
 	strcat(d, dirD);
-	strcat(d, year);
-	strcat(d, "\\");
-	strcat(d, semester);
+	strcat(d, yearName);
 	strcat(d, "\\");
 	strcat(d, className);
 	system(d);

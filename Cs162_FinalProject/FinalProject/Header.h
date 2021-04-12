@@ -57,8 +57,9 @@ struct Year {
 };
 
 struct Semester {
+	char *SemesterName;
 	Course *pCourse;
-	Semester *nextSemester;
+	Semester *semesterNext;
 };
 
 struct dayPerformed {

@@ -5,51 +5,6 @@
 
 using namespace std;
 
-void createNewSemester(Year*& pHead, int& n, char* semester, char* year)
-{
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
-	char c[500] = "";
-	strcat(c, dirD);
-	strcat(c, year);
-	strcat(c, "\\semester.txt");
-
-	ofstream fout;
-	fout.open(c);
-
-	Year* cur = pHead;
-	n += 1;
-	fout << n << endl;
-	if (pHead == nullptr) {
-		pHead = new Year;
-		pHead->semesters = semester;
-		pHead->pNext = nullptr;
-		fout << pHead->semesters;
-	}
-	else {
-		while (cur != nullptr) {
-			fout << cur->semesters << endl;
-			cur = cur->pNext;
-		}
-		cur = new Year;
-		cur->semesters = semester;
-		fout << cur->semesters;
-		cur->pNext = nullptr;
-	}
-	fout.close();
-
-	char d[500] = "mkdir ";
-	strcat(d, dirD);
-	strcat(d, year);
-	strcat(d, "\\");
-	strcat(d, semester);
-	system(d);
-
-	strcat(d, "\\class.txt");
-	fout.open(d);
-	fout << 0;
-	fout.close();
-}
-
 void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";

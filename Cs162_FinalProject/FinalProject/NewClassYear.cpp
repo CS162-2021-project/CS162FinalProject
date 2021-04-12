@@ -15,11 +15,12 @@ void createNewYear(Year*& pYear, char* yearName) {
 		fout << pYear -> YearName;
 	}
 	else {
-		while (pCur != nullptr) {
+		while (pCur -> yearNext != nullptr) {
 			fout << pCur -> YearName << endl;
 			pCur = pCur -> yearNext;
 		}
-		pCur = new Year;
+		pCur -> yearNext = new Year;
+		pCur = pCur -> yearNext;
 		pCur -> YearName = yearName;
 		fout << pCur -> YearName;
 		pCur -> yearNext = nullptr;
@@ -31,10 +32,4 @@ void createNewYear(Year*& pYear, char* yearName) {
 	strcat(c, dirD);
 	strcat(c, yearName);
 	system(c);
-	
-	strcat(c, "\\semester.txt");
-
-	fout.open(c);
-	fout << 0;
-	fout.close();
 }

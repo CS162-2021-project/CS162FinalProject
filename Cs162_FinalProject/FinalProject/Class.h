@@ -2,10 +2,11 @@
 #define _CLASS_H_
 
 #include <bits/stdc++.h>
+#include "header.h"
 
 // Create class
 
-void createNewClass(Year*& pYear, char* yearName, char* className);
+void createNewClass(Class*& pClass, char* yearName, char* className);
 
 // Add Student
 
