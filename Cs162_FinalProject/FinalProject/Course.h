@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include"Header.h"
+#include<string.h>
 
 // Input interfare
 
@@ -21,12 +22,16 @@ void createNewSemester(Year*& pHead, int& n, char* semester, char* year);
 
 void addNewCourse(Course*& pHead, int& n, char* semester, char* year);
 
-// Delete Course
- 
+//View list of all course available
+
+void viewListOfCourse(Course* pHead);
+
+ // Delete Course
+
 void deleteCourse (Course*& pHead, char *courseID);
 
 // Update Course
 
-void updateCourse (Course*& pHead);
+void updateCourse (Course*& pHead , char* courseID);
   
 #endif // !_COURSE_H_

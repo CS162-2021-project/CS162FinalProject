@@ -46,9 +46,9 @@ struct Year {
 };
 
 struct dayPerformed {
-	char d1[5];
+	char d1[5]; // day
 	char d2[5];
-	char s1[5];
+	char s1[5];	// shift
 	char s2[5];
 };
 
@@ -61,6 +61,7 @@ struct Course {
 	dayPerformed date;
 	Date startDate, endDate;
 	Course* pNext = nullptr;
+	Student* student;
 };
 
 #endif // !_HEADER_H_
