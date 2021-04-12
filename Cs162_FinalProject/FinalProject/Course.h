@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include"Header.h"
+#include<string.h>
 
 // Input interfare
 
@@ -35,6 +36,6 @@ void deleteCourse (Course*& pHead, char *courseID);
 
 // Update Course
 
-void updateCourse (Course*& pHead);
+void updateCourse (Course*& pHead , char* courseID);
   
 #endif // !_COURSE_H_

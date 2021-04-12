@@ -193,13 +193,13 @@ void addNewCourse(Course*& pHead, int& n, char* semester, char* year) {
 
 
 void deleteCourse (Course*& pHead, char *courseID) {
-    if (pHead->id == courseID) {
+    if (strcmp(pHead->id,courseID) == 0) {
         Course *pDel = pHead;
         pHead = pHead->pNext;
         delete pDel;
     } else {
         Course *pCur = pHead;
-        while (pCur->pNext && pCur->pNext->id != courseID) {
+        while (pCur->pNext && strcmp(pCur->pNext->id,courseID) != 0) {
             pCur = pCur->pNext;
         }
         Course *pDel = pCur->pNext;
@@ -208,13 +208,9 @@ void deleteCourse (Course*& pHead, char *courseID) {
     }
 }
 
-void updateCourse (Course*& pHead) {
-    cout << "Please enter the course ID that you want to update: ";
-    char ID[101];
-    cin.ignore(1001, '\n');
-    cin.get(ID, 101, '\n');
+void updateCourse (Course*& pHead , char* courseID) {
     Course *pCur = pHead;
-    while (pCur && pCur->id != ID) {
+    while (pCur && strcmp(pCur->id,courseID) != 0) {
         pCur = pCur->pNext;
     }
     
@@ -300,7 +296,7 @@ void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) {
 	cout << "PLease input the ID of Course in which you want to enroll :";
 	cin.ignore(1001, '\n');
 	cin.get(ID, 101, '\n');	
-
+	
 
 	
 }
