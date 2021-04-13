@@ -100,7 +100,7 @@ void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) {
 	cout << "PLease input the ID of Course in which you want to enroll :";
 	cin.ignore(1001, '\n');
 	cin.get(ID, 101, '\n');	
-	
-
-	
+	//unfinished
 }
+
+
