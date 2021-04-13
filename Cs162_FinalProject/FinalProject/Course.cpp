@@ -69,7 +69,7 @@ void updateCourse (Course*& pHead , char* courseID) {
 
 // a course registration session is active,student can do :
 
-void registrationSession() {
+void registrationSession() {   //unfinished ,im choking, you can delete it if you want :)
 	cout << "You have to log in to the system first:";
 	// Login to the system
 	int n;
@@ -92,7 +92,7 @@ void registrationSession() {
 	}
 }
 
-void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) {
+void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) { //unfinished
 	char ID[101];
 	int cnt = 0;
 	cout << "Course available:" << endl;
@@ -100,7 +100,11 @@ void enrollInACourse(Course* pHead , Course*& pEnrolledCourse) {
 	cout << "PLease input the ID of Course in which you want to enroll :";
 	cin.ignore(1001, '\n');
 	cin.get(ID, 101, '\n');	
+<<<<<<< Updated upstream
 	//unfinished
 }
 
 
+=======
+}
+>>>>>>> Stashed changes
