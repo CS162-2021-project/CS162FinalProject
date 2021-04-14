@@ -4,54 +4,59 @@
 
 using namespace std;
 
-void inputStudent(Student &stu) {
+void inputStudent(Student *&newStu) {
 	cout << "Input the student's ID: ";
-	stu.ID = new char[21];
-	cin >> stu.ID;
+	newStu -> studentID = new char[21];
+	cin >> newStu -> studentID;
 
 	cout << "Input the student's name: ";
-	stu.sName = new char[21];
-	cin >> stu.sName;
+	newStu -> Name = new char[21];
+	cin >> newStu -> Name;
 
 	cout << "Input the student's date of birth.\n";
 	cout << "Year? ";
-	cin >> stu.DOB.year;
+	cin >> newStu -> DOB.year;
 	cout << "Month? ";
-	cin >> stu.DOB.month;
+	cin >> newStu -> DOB.month;
 	cout << "Day? ";
-	cin >> stu.DOB.day;
+	cin >> newStu -> DOB.day;
 	cin.get();
 
 	cout << "Input the student's gender(type 1 if male, 0 if female): ";
-	cin >> stu.gender;
+	cin >> newStu -> gender;
 	cin.get();
 }
 
 void addStudent(Student*& pStudent, char* yearName, char* className) {
-	cout << "Please input the year: ";
-	char *yearInput = new char[21]; cin >> yearInput;
-	cout << "Please input the semester: ";
-	char *semesterInput = new char[21]; cin >> semesterInput;
-	cout << "Please input the class name: ";
-	char *className = new char[21]; cin >> className;
-
-	char dirD[] = { "C:/Github/CS162FinalProject/Data/" };
-	char d[505] = { "" };
-	strcat_s(d, 500, dirD);
-	strcat_s(d, 500, year);
-	strcat_s(d, 500, "/");
-	strcat_s(d, 500, seme);
-	strcat_s(d, 500, "/");
-	strcat_s(d, 500, className);
-	strcat_s(d, 500, "/");
-	strcat_s(d, 500, "Student.txt");
-
-	Student newStu;
-    inputStudent(newStu);
+	char dirD[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+	char d[505] = "";
+	strcat(d, dirD);
+	strcat(d, yearName);
+	strcat(d, "\\");
+	strcat(d, className);
+	strcat(d, "\\");
+	strcat(d, "Student.txt");
 
 	ofstream fOut(d);
-}
 
-void addStudentByCSV() {
+	Student *newStu = new Student;
+    inputStudent(newStu);
 
+	if (pStudent == nullptr) {
+		pStudent = newStu;
+		pStudent -> studentNext = nullptr;
+		fOut << pStudent -> studentID << ' ' << pStudent -> Name << ' ' << pStudent -> DOB.month << "-" << pStudent -> DOB.day << "-" << pStudent -> DOB.year << ' ' << pStudent -> gender;
+	}
+	else {
+		Student* pCur = pStudent;
+		while (pCur -> studentNext != nullptr) {
+			pCur = pCur -> studentNext;
+			fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender;
+		}
+		pCur -> studentNext = newStu;
+		pCur = pCur -> studentNext;
+		pCur -> studentNext = nullptr;
+		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender;
+	}
+	
 }

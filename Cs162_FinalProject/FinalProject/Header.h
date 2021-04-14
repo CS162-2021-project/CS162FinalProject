@@ -31,7 +31,8 @@ struct Student
 	Date DOB;
 	char* sClass;
 	int gender; // 0 if male, 1 if female
-	Course *pCourse;
+	Course *pCourse = nullptr;
+	Student *studentNext = nullptr;
 };
 
 struct listStudent {
@@ -45,26 +46,26 @@ struct Scoreboard {
 	float final;
 	float bonus;
 	float total;
-	Scoreboard *scoreboardNext;
+	Scoreboard *scoreboardNext = nullptr;
 };
 
 struct Class {
 	char *ClassName;
-	Student *pStudent;
-	Class *classNext; 
+	Student *pStudent = nullptr;
+	Class *classNext = nullptr; 
 };
 
 struct Year {
 	char *YearName;
 	Class *pClass;
-	Semester *pSemester;
-	Year *yearNext;
+	Semester *pSemester = nullptr;
+	Year *yearNext = nullptr;
 };
 
 struct Semester {
 	char *SemesterName;
-	Course *pCourse;
-	Semester *semesterNext;
+	Course *pCourse = nullptr;
+	Semester *semesterNext = nullptr;
 };
 
 struct dayPerformed {
@@ -82,8 +83,8 @@ struct Course {
 	int maxStudent;
 	dayPerformed date;
 	Date startDate, endDate;
-	Course* pNext = nullptr;
-	Student* pStudent;
+	Student* pStudent = nullptr;
+	Course* courseNext = nullptr;
 };
 
 #endif // !_HEADER_H_
