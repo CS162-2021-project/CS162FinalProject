@@ -34,6 +34,11 @@ struct Student
 	Course *pCourse;
 };
 
+struct listStudent {
+	Student pStudent;
+	Student* studentNext;
+};
+
 struct Scoreboard {
 	Student stu;
 	float midterm;
