@@ -24,11 +24,11 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName) {
             pCur = pCourse;
         }
         else {
-            while (pCur->pNext) {
-                pCur = pCur->pNext;
+            while (pCur -> courseNext) {
+                pCur = pCur -> courseNext;
             }
-            pCur->pNext = new Course;
-            pCur = pCur->pNext;
+            pCur -> courseNext = new Course;
+            pCur = pCur -> courseNext;
         }
         // get info
         cin.ignore(1001, '\n');
