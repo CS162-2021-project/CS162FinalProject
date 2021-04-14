@@ -1,9 +1,10 @@
-#include <bits/stdc++.h
+#include <bits/stdc++.h>
+
 #include "Header.h"
 #include "Course.h"
 
 using namespace std;
-void updateCourse(Course*& pHead, char* courseID) {
+void updateCourse(Course*& pCourse, char* courseID) {
     Course* pCur = pHead;
     while (pCur && strcmp(pCur->id, courseID) != 0) {
         pCur = pCur->pNext;
@@ -19,7 +20,6 @@ void updateCourse(Course*& pHead, char* courseID) {
     cout << "which information you want to update?" << endl;
     int x;
     cin >> x;
-
 
     if (x == 1) {
         cout << "New course ID:";
