@@ -3,20 +3,20 @@
 #include<iostream>
 using namespace std;
 
-void deleteCourse(Course*& pHead, char* courseID) {
-    if (strcmp(pHead->id, courseID) == 0) {
-        Course* pDel = pHead;
-        pHead = pHead->pNext;
+void deleteCourse(Course*& pCourse, char* courseID) {
+    if (strcmp(pCourse -> id, courseID) == 0) {
+        Course* pDel = pCourse;
+        pCourse = pCourse -> courseNext;
         delete pDel;
     }
     else {
-        Course* pCur = pHead;
-        while (pCur->pNext && strcmp(pCur->pNext->id, courseID) != 0) {
-            pCur = pCur->pNext;
+        Course* pCur = pCourse;
+        while (pCur -> courseNext && strcmp(pCur -> courseNext -> id, courseID) != 0) {
+            pCur = pCur -> courseNext;
         }
-        if (pCur->pNext) {
-            Course* pDel = pCur->pNext;
-            pCur->pNext = pDel->pNext;
+        if (pCur -> courseNext) {
+            Course* pDel = pCur -> courseNext;
+            pCur -> courseNext = pDel -> courseNext;
             delete pDel;
         }
     }

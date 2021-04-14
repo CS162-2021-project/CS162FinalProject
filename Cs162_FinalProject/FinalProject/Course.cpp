@@ -6,23 +6,6 @@
 using namespace std;
 
 
-void deleteCourse (Course*& pHead, char *courseID) {
-    if (strcmp(pHead->id,courseID) == 0) {
-        Course *pDel = pHead;
-        pHead = pHead->pNext;
-        delete pDel;
-    } else {
-        Course *pCur = pHead;
-        while (pCur->pNext && strcmp(pCur->pNext->id,courseID) != 0) {
-            pCur = pCur->pNext;
-        }
-        Course *pDel = pCur->pNext;
-        pCur->pNext = pDel->pNext;
-        delete pDel;
-    }
-}
-
-
 // a course registration session is active,student can do :
 
 void registrationSession() {   //unfinished ,im choking, you can delete it if you want :)

@@ -85,6 +85,7 @@ struct Course {
 	Date startDate, endDate;
 	Student* pStudent = nullptr;
 	Course* courseNext = nullptr;
+	Scoreboard* pScoreboard = nullptr;
 };
 
 #endif // !_HEADER_H_

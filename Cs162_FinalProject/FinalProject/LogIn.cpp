@@ -5,10 +5,10 @@
 using namespace std;
 
 bool LogIn(){
-	char ad[200] = {};
+	char ad[200];
 	ifstream fin;
 	bool login = false;
-	bool StillLog =true;
+	bool StillLog = true;
 	strcat(ad, "E:\\Github\\CS162FinalProject\\Data\\Account.txt");
 	
 	while(!login || StillLog){
@@ -19,16 +19,14 @@ bool LogIn(){
 			StillLog = false;
 			break;
 		}
-		char[101] Username; char[101] Password;
+		char Username[101]; char Password[101];
 		cout << "Please input Username: ";
 		cin >> Username;
 		cout << "Please input Password: ";
 		cin >> Password;
 		fin.open(ad);
-		while(!cin.eof){
-			char[101] name;
-			char[101] pass;
-			fin >> name; fin >> pass;
+		char name[101], pass[101];
+		while(fin >> name && fin >> pass){
 			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
 				cout << "You have logged in " << endl;
 				login = true;

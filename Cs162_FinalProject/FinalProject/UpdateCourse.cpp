@@ -5,9 +5,9 @@
 
 using namespace std;
 void updateCourse(Course*& pCourse, char* courseID) {
-    Course* pCur = pHead;
+    Course* pCur = pCourse;
     while (pCur && strcmp(pCur->id, courseID) != 0) {
-        pCur = pCur->pNext;
+        pCur = pCur -> courseNext;
     }
 
     cout << "Choose 1 of these functions:";
