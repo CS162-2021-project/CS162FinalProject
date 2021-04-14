@@ -35,7 +35,7 @@ bool isExistCourse(char courseID[], char year[], char semester[], char className
 		while (!in.eof()) {
 			in.get(a, 200, '\n');
 			in.ignore(200, '\n');
-			if (/*isSameStr(a, courseID)*/) {
+			if (/*isSameStr(a, courseID)*/true) {
 				in.close();
 				return true;
 			}
