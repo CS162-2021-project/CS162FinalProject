@@ -31,6 +31,7 @@ struct Student
 	Date DOB;
 	char* sClass;
 	int gender; // 0 if male, 1 if female
+	bool enrolledSession[8][5];
 	Course *pCourse = nullptr;
 	Student *studentNext = nullptr;
 };

@@ -3,6 +3,8 @@
 #include "Class.h"
 #include "Course.h"
 #include "Staff.h"
+#include "Student.h"
+#include "System.h"
 
 using namespace std;
 
@@ -17,7 +19,7 @@ int main() {
 		if (respond == 1) { // Create a year
 			cout << "Please input the year: ";
 			char *yearName = new char[21]; cin >> yearName;
-			createNewYear(pYear, yearInput);
+			createNewYear(pYear, yearName);
 			cout << "Done creating year\n\n";
 
 			delete []yearInput;

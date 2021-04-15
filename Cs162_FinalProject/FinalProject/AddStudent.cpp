@@ -41,6 +41,7 @@ void addStudent(Student*& pStudent, char* yearName, char* className) {
 
 	Student *newStu = new Student;
     inputStudent(newStu);
+    newStu -> sClass = className;
 
 	if (pStudent == nullptr) {
 		pStudent = newStu;
