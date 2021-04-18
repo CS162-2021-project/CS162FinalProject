@@ -1,22 +1,19 @@
 #ifndef _COURSE_H_
 #define _COURSE_H_
 
-#include<iostream>
-#include<fstream>
 #include"Header.h"
-#include<string.h>
 
 // Create year
 
-void createNewYear(Year*& pHead, char* year);
+void createNewYear(Year*& pYear, char* yearName);
 
 // Create Semester
 
-void createNewSemester(Semester*& pSemester, char* semester, char* year);
+void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName);
 
 // Create Course
 
-void addNewCourse(Course*& pCourse, char* semester, char* year);
+void addNewCourse(Course*& pCourse, char* semesterName, char* yearName);
 
 //View list of all course available
 

@@ -17,18 +17,17 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName)
 	if (pSemester == nullptr) {
 		pSemester = new Semester;
 		pSemester -> SemesterName = semesterName;
-		pSemester -> semesterNext = nullptr;
 		fout << pSemester -> SemesterName;
 	}
 	else {
 		while (cur -> semesterNext != nullptr) {
-			fout << cur -> SemesterName << endl;
+			fout << cur -> SemesterName << '\n';
 			cur = cur -> semesterNext;
 		}
+		fout << cur -> SemesterName << '\n';
 		cur -> semesterNext = new Semester;
 		cur = cur -> semesterNext;
 		cur -> SemesterName = semesterName;
-		cur -> semesterNext = nullptr;
 		fout << cur -> SemesterName;
 	}
 	fout.close();

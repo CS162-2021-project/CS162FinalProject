@@ -1,29 +1,29 @@
-#include <bits/stdc++.h>
+#include <fstream>
+#include <string.h>
 #include "Course.h"
 
 using namespace std;
 
 void createNewYear(Year*& pYear, char* yearName) {
 	ofstream fout;
-	fout.open("C:\\GitHub\\CS162FinalProject\\Data\\year.txt");
+	fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
 
 	Year* pCur = pYear;
 	if (pYear == nullptr) {
 		pYear = new Year;
 		pYear -> YearName = yearName;
-		pYear -> yearNext = nullptr;
 		fout << pYear -> YearName;
 	}
 	else {
 		while (pCur -> yearNext != nullptr) {
-			fout << pCur -> YearName << endl;
+			fout << pCur -> YearName << '\n';
 			pCur = pCur -> yearNext;
 		}
+		fout << pCur -> YearName << '\n';
 		pCur -> yearNext = new Year;
 		pCur = pCur -> yearNext;
 		pCur -> YearName = yearName;
 		fout << pCur -> YearName;
-		pCur -> yearNext = nullptr;
 	}
 	fout.close();
 

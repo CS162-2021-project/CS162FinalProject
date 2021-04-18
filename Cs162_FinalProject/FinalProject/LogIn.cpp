@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 #include "System.h"
 #include "Header.h"
 
@@ -6,7 +8,6 @@ using namespace std;
 
 bool LogIn(int t){
 	char ad[200] = "";
-	ifstream fin;
 	bool login = false;
 	bool StillLog = true;
 
@@ -31,7 +32,7 @@ bool LogIn(int t){
 		cin >> Username;
 		cout << "Please input Password: ";
 		cin >> Password;
-		fin.open(ad);
+		ifstream fin(ad);
 		char name[101], pass[101];
 		while(fin >> name && fin >> pass){
 			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
