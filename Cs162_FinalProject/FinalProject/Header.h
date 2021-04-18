@@ -36,11 +36,6 @@ struct Student
 	Student *studentNext = nullptr;
 };
 
-struct listStudent {
-	Student pStudent;
-	Student* studentNext;
-};
-
 struct Scoreboard {
 	Student stu;
 	float midterm;

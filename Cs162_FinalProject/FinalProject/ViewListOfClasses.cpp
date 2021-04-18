@@ -4,7 +4,6 @@
 #include<iostream>
 
 using namespace std;
-
 void viewListOfCLasses(Year* pYear) {
 	while (pYear) {
 		cout << pYear->YearName << endl;

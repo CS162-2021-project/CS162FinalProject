@@ -3,7 +3,8 @@
 
 void viewListOfCLasses(Year* pYear);
 
-void viewListOfStudentsInClass(Year* pYear, Class* pClass, char* className);
+void viewStudentInfo(Student student);
+void viewListOfStudentsInClass(Year* pYear, char* className);
 
 void viewListOfStudentsInCourse (Student *pStuInCourse);
 
