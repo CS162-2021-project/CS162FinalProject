@@ -6,10 +6,6 @@
 #include"Header.h"
 #include<string.h>
 
-// Input interfare
-
-int inputInterfare();
-
 // Create year
 
 void createNewYear(Year*& pHead, char* year);

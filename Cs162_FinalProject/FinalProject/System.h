@@ -2,7 +2,9 @@
 
 #define _SYSTEM_H_
 
-bool LogIn();
+int chooseRole();
+bool LogIn(int t);
+int yearScreen();
 
 
 #endif

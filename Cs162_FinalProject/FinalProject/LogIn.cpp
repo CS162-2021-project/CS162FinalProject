@@ -4,17 +4,24 @@
 
 using namespace std;
 
-bool LogIn(){
-	char ad[200];
+bool LogIn(int t){
+	char ad[200] = "";
 	ifstream fin;
 	bool login = false;
 	bool StillLog = true;
-	strcat(ad, "E:\\Github\\CS162FinalProject\\Data\\Account.txt");
+
+	if (t == 1)
+		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_staff.txt");
+	else if (t == 2)
+		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");			
 	
 	while(!login || StillLog){
 		int x;
-		cout << "You want to log in? (1) means yes/(0) means no";
+		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << " ?\n";
+		cout << "0: Go back\n";
+		cout << "1: Log in\n";
 		cin >> x;
+		system("cls");
 		if(x == 0){
 			StillLog = false;
 			break;
@@ -28,15 +35,16 @@ bool LogIn(){
 		char name[101], pass[101];
 		while(fin >> name && fin >> pass){
 			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
-				cout << "You have logged in " << endl;
+				system("cls");
+				cout << "You have logged in!\n\n";
 				login = true;
 				break;
 			}
 		}
+		if (login)
+			break;
+		system("cls");
+		cout << "Wrong username or password, please try again.\n\n";
 	}
-	
-	if(login == true) return true;
-	return false;
+	return login;
 }
-
-
