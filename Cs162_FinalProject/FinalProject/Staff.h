@@ -11,5 +11,5 @@ void viewListOfStudentsInClass(Year* pYear, char* className);
 void viewListOfStudentsInCourse (Student *pStuInCourse);
 void ViewScoreboardOfCourse (Course *pCourse, char *courseID);
 
-
+void exportStudentToCsv(Student* pStuInCourse);
 #endif // !_STAFF_H_
