@@ -16,7 +16,7 @@ https://docs.google.com/document/d/1liCHNpmaWG_VnVGn0WnYP-ck2XIiKxUBBYm81PltfZ8/
 
 Optinal : 
 
-1. You might need to change the path in \*.cpp (for example, E:\\github\\ bla bla)
+1. You might need to change the path in \*.cpp (for example, C:\\github\\ bla bla)
 
 2. If you want to run the project, type the following in the terminal which has lead to our .cpp path:
 
