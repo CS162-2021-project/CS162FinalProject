@@ -50,6 +50,7 @@ void createYearScreen(Year *& pYear) {
 int classScreen(Year *& curYear, char* yearName) {
 	char dir[101] = "C:\\Github\\CS162FinalProject\\Data\\";
 	strcat(dir, yearName);
+	strcat(dir, "\\Class.txt");
 	ifstream fIn(dir);
 	cout << "Please input your choice: \n";
 	cout << "0: Go back\n";

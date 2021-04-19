@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <string.h>
 #include "Class.h"

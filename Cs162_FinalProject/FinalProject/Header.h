@@ -53,7 +53,7 @@ struct Class {
 
 struct Year {
 	char *YearName;
-	Class *pClass;
+	Class *pClass = nullptr;
 	Semester *pSemester = nullptr;
 	Year *yearNext = nullptr;
 };
