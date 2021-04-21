@@ -12,6 +12,7 @@ void viewListOfStudentsInClass(Year* pYear, char* className) {
 					viewStudentInfo(pYear->pClass->pStudent);
 					pYear->pClass->pStudent = pYear->pClass->pStudent->studentNext;
 				}
+				return;
 			}
 			pYear->pClass = pYear->pClass->classNext;
 		}
