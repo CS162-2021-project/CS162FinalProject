@@ -6,6 +6,6 @@
 
 void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, Date RegisterDate);
 
-void viewScoreBoard(Course pCourse, char* studentID); // task 26
+void viewScoreBoard(Course* pCourse, char* studentID); // task 26
 
 #endif
