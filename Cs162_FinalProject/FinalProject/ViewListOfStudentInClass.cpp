@@ -23,7 +23,6 @@ void viewListOfStudentsInClass(Year* pYear, char* className) {
 void viewStudentInfo(Student student) {
 	cout << "Student name : " << student.name << endl;
 	cout << "Student ID : " << student.studentID << endl;
-	if (student.gender)
-		cout << "female" << endl;
+	if (student.gender) cout << "female" << endl;
 	else cout << "male" << endl;
 }
