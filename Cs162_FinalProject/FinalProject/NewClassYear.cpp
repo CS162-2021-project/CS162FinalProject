@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <string.h>
 #include "Course.h"
@@ -9,6 +10,15 @@ void createNewYear(Year*& pYear, char* yearName) {
 	fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
 
 	Year* pCur = pYear;
+	while (pCur != nullptr) {
+		if (pCur -> YearName == yearName) {
+			cout << "The year you are about to create has already existed\n";
+			return;
+		}
+		pCur = pCur -> yearNext;
+	}
+
+	pCur = pYear;
 	if (pYear == nullptr) {
 		pYear = new Year;
 		pYear -> YearName = yearName;

@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 #include "Header.h"
 #include "Class.h"
 
@@ -25,9 +27,10 @@ void inputStudent(Student *&newStu) {
 	cout << "Input the student's gender(type 1 if male, 0 if female): ";
 	cin >> newStu -> gender;
 	cin.get();
+	system("cls");
 }
 
-void addStudent(Student*& pStudent, char* yearName, char* className) {
+void addStudent(Student*& pStudent, char* yearName, char* className, Student *& newStu) {
 	char dirD[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
 	char d[505] = "";
 	strcat(d, dirD);
@@ -39,25 +42,21 @@ void addStudent(Student*& pStudent, char* yearName, char* className) {
 
 	ofstream fOut(d);
 
-	Student *newStu = new Student;
-    inputStudent(newStu);
     newStu -> sClass = className;
 
 	if (pStudent == nullptr) {
 		pStudent = newStu;
-		pStudent -> studentNext = nullptr;
-		fOut << pStudent -> studentID << ' ' << pStudent -> Name << ' ' << pStudent -> DOB.month << "-" << pStudent -> DOB.day << "-" << pStudent -> DOB.year << ' ' << pStudent -> gender;
+		fOut << pStudent -> studentID << ' ' << pStudent -> Name << ' ' << pStudent -> DOB.month << "-" << pStudent -> DOB.day << "-" << pStudent -> DOB.year << ' ' << pStudent -> gender << '\n';
 	}
 	else {
 		Student* pCur = pStudent;
 		while (pCur -> studentNext != nullptr) {
 			pCur = pCur -> studentNext;
-			fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender;
+			fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender << '\n';
 		}
+		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender << '\n';
 		pCur -> studentNext = newStu;
 		pCur = pCur -> studentNext;
-		pCur -> studentNext = nullptr;
 		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender;
 	}
-	
 }

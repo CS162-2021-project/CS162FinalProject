@@ -4,11 +4,19 @@
 
 #include "Header.h"
 
+void loadData(Year *& pYear);
+
 int chooseRoleScreen();
 bool LogIn(int t);
+
 int yearScreen();
 void createYearScreen(Year*& pYear);
-int classScreen(Year *& curYear, char* yearName);
-void createClassScreen(Class *& pClass, char * yearName);
+
+int classScreen(char* yearName);
+void createClassScreen(Class *& pClass, char* yearName);
+
+int studentScreen(Student * pStudent, char* yearName, char* className);
+void createStudentScreen(Student *& pStudent, char* yearName, char* className);
+void createStudentCSVScreen(Student *& pStudent, char* yearName, char* className);
 
 #endif

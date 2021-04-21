@@ -17,6 +17,16 @@ void createNewClass(Class*& pClass, char* yearName, char* className) {
 
 	Class* cur = pClass;
 
+	while (cur != nullptr) {
+		if (cur -> ClassName == className) {
+			cout << "The year you are about to create has already existed\n";
+			return;
+		}
+		cur = cur -> classNext;
+	}
+
+	cur = pClass;
+
 	if (pClass == nullptr) {
 		pClass = new Class;
 		pClass -> ClassName = className;

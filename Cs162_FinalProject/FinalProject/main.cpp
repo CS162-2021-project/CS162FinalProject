@@ -12,6 +12,9 @@ int main() {
 	//Input interface
 
 	Year* pYear = nullptr;
+	loadData(pYear);
+	system("cls");
+
 	cout << "Welcome to the HCMUS Course Registration system\n\n";
 
 	while(true) { // Basic screen, choose which role to login
@@ -28,7 +31,7 @@ int main() {
 						createYearScreen(pYear);	
 					}
 					else {
-						// Ascess that year
+						// Ascess that year, might need to add a function to change password
 						Year* curYear = pYear;
 						int cntYear = 2;
 						while (curYear != nullptr && cntYear < respondYear) {
@@ -41,16 +44,39 @@ int main() {
 						}	
 
 						while(true) { // Edit Class screen
-							cout << "Year: " << curYear -> YearName << "\n\n";
-
-							int respondClass = classScreen(curYear, curYear -> YearName);
+							int respondClass = classScreen(curYear -> YearName);
 							if (respondClass == 0)
 								break;
 							else if (respondClass == 1) { // Create a Class in this year
 								createClassScreen(curYear -> pClass, curYear -> YearName);
 							}
-							else {
-								// To be coded
+							else {           
+								//Access that class
+								Class* curClass = curYear -> pClass;
+								int cntClass = 2;
+								while (curClass != nullptr && cntClass < respondClass) {
+									curClass = curClass -> classNext;
+									cntClass++;
+								}
+								if (curClass == nullptr || cntClass < respondClass) {
+									cout << "Invalid, please try again\n\n";
+									continue;
+								}
+
+								while (true) { // Edit Student Screen
+									int respondStudent = studentScreen(curClass -> pStudent, curYear -> YearName, curClass -> ClassName);
+									if (respondStudent == 0)
+										break;
+									else if (respondStudent == 1) { // Create a new student in this class
+										createStudentScreen(curClass -> pStudent, curYear -> YearName, curClass -> ClassName);
+									}	
+									else if (respondStudent == 2) { // Add students through .csv file
+										createStudentCSVScreen(curClass -> pStudent, curYear -> YearName, curClass -> ClassName);										
+									}
+									else if (respondStudent == 3) {	// View scoreboard of a class
+										// To be coded
+									}
+								}
 							}
 						}	
 					}

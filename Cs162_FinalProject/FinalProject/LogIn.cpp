@@ -17,12 +17,18 @@ bool LogIn(int t){
 		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");			
 	
 	while(!login || StillLog){
-		int x;
 		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << " ?\n";
 		cout << "0: Go back\n";
 		cout << "1: Log in\n";
-		cin >> x;
+
+		char *respond = new char[101]; cin >> respond;
 		system("cls");
+		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+			cout << "Invalid, please try again\n\n";
+			continue;
+		}
+
+		int x = respond[0] - '0';
 		if(x == 0){
 			StillLog = false;
 			break;
