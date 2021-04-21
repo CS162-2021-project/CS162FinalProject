@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void createNewClass(Class*& pClass, char* yearName, char* className) {
+void createNewClass(Class*& pClass, char* yearName, char* className, int add) {
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
@@ -13,7 +13,8 @@ void createNewClass(Class*& pClass, char* yearName, char* className) {
 	strcat(c, "\\Class.txt");
 
 	ofstream fout;
-	fout.open(c);
+	if (add)
+		fout.open(c);
 
 	Class* cur = pClass;
 
@@ -34,16 +35,20 @@ void createNewClass(Class*& pClass, char* yearName, char* className) {
 	}
 	else {
 		while (cur -> classNext != nullptr) {
-			fout << cur -> ClassName << '\n';
+			if (add)
+				fout << cur -> ClassName << '\n';
 			cur = cur -> classNext;
 		}
-		fout << cur -> ClassName << '\n';
+		if (add)
+			fout << cur -> ClassName << '\n';
 		cur -> classNext = new Class;
 		cur = cur -> classNext;
 		cur -> ClassName = className;
-		fout << cur -> ClassName;
+		if (add)
+			fout << cur -> ClassName;
 	}
-	fout.close();
+	if (add)
+		fout.close();
 
 	char d[500] = "mkdir ";
 	strcat(d, dirD);

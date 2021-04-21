@@ -30,7 +30,7 @@ void inputStudent(Student *&newStu) {
 	system("cls");
 }
 
-void addStudent(Student*& pStudent, char* yearName, char* className, Student *& newStu) {
+void addStudent(Student*& pStudent, char* yearName, char* className, Student *& newStu, int add) {
 	char dirD[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
 	char d[505] = "";
 	strcat(d, dirD);
@@ -40,23 +40,31 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
 	strcat(d, "\\");
 	strcat(d, "Student.txt");
 
-	ofstream fOut(d);
+	ofstream fOut;                  	
+	if (add)
+		fOut.open(d);
 
     newStu -> sClass = className;
 
 	if (pStudent == nullptr) {
 		pStudent = newStu;
-		fOut << pStudent -> studentID << ' ' << pStudent -> Name << ' ' << pStudent -> DOB.month << "-" << pStudent -> DOB.day << "-" << pStudent -> DOB.year << ' ' << pStudent -> gender << '\n';
+		if (add)
+			fOut << pStudent -> studentID << ',' << pStudent -> Name << ',' << pStudent -> DOB.year << "-" << pStudent -> DOB.month << "-" << pStudent -> DOB.day << ',' << pStudent -> gender << '\n';
 	}
 	else {
 		Student* pCur = pStudent;
 		while (pCur -> studentNext != nullptr) {
 			pCur = pCur -> studentNext;
-			fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender << '\n';
+			if (add)
+				fOut << pCur -> studentID << ',' << pCur -> Name << ',' << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ',' << pCur -> gender << '\n';
 		}
-		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender << '\n';
+		if (add)
+			fOut << pCur -> studentID << ',' << pCur -> Name << ',' << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ',' << pCur -> gender << '\n';
 		pCur -> studentNext = newStu;
 		pCur = pCur -> studentNext;
-		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender;
+		if (add)
+			fOut << pCur -> studentID << ',' << pCur -> Name << ',' << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ',' << pCur -> gender << '\n';
 	}
+	if (add)
+		fOut.close();
 }

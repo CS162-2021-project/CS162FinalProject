@@ -5,7 +5,7 @@
 
 // Create year
 
-void createNewYear(Year*& pYear, char* yearName);
+void createNewYear(Year*& pYear, char* yearName, int add);
 
 // Create Semester
 

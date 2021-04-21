@@ -5,9 +5,10 @@
 
 using namespace std;
 
-void createNewYear(Year*& pYear, char* yearName) {
+void createNewYear(Year*& pYear, char* yearName, int add) {
 	ofstream fout;
-	fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
+	if (add)
+		fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
 
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
@@ -22,20 +23,25 @@ void createNewYear(Year*& pYear, char* yearName) {
 	if (pYear == nullptr) {
 		pYear = new Year;
 		pYear -> YearName = yearName;
-		fout << pYear -> YearName;
+		if (add)
+			fout << pYear -> YearName;
 	}
 	else {
 		while (pCur -> yearNext != nullptr) {
-			fout << pCur -> YearName << '\n';
+			if (add)
+				fout << pCur -> YearName << '\n';
 			pCur = pCur -> yearNext;
 		}
-		fout << pCur -> YearName << '\n';
+		if (add)
+			fout << pCur -> YearName << '\n';
 		pCur -> yearNext = new Year;
 		pCur = pCur -> yearNext;
 		pCur -> YearName = yearName;
-		fout << pCur -> YearName;
+		if (add)
+			fout << pCur -> YearName;
 	}
-	fout.close();
+	if (add)
+		fout.close();
 
 	char dirD[] = "C:\\GitHub\\CS162FinalProject\\Data\\";
 	char c[500] = "mkdir ";

@@ -11,7 +11,7 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName) {
     strcat(c, yearName);
     strcat(c, "\\");
     strcat(c, semesterName);
-    strcat(c, "\\course.txt");
+    strcat(c, "\\Course.txt");
 
     ofstream fout;
     fout.open(c , std::ios_base::app);

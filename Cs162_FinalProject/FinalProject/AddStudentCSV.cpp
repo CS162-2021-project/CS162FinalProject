@@ -7,7 +7,8 @@ using namespace std;
 
 void inputStudentCSV(Student *&newStu, char *s) {
 	int t = 0, n = strlen(s);
-	char *cur = new char[50], pos = 0;
+	int pos = 0;
+	char *cur = new char[50];
 	for (int i = 0; i < n; i++) {
 		if (i == n - 1 || s[i] == ',') {
 			if (t == 0) {
@@ -15,14 +16,14 @@ void inputStudentCSV(Student *&newStu, char *s) {
 			}
 			else if (t == 1) {
 				newStu -> studentID = new char[pos + 10];
-				for (int i = 0 ; i < pos; i++)
-					newStu -> studentID[i] = cur[i];
+				for (int j = 0 ; j < pos; j++)
+					newStu -> studentID[j] = cur[j];
 				newStu -> studentID[pos] = '\0';					
 			} 
 			else if (t == 2) {
 				newStu -> Name = new char[pos + 10];
-				for (int i = 0 ; i < pos; i++)
-					newStu -> Name[i] = cur[i];
+				for (int j = 0 ; j < pos; j++)
+					newStu -> Name[j] = cur[j];
 				newStu -> Name[pos] = '\0';
 			}
 			else if (t == 3) {
@@ -34,7 +35,7 @@ void inputStudentCSV(Student *&newStu, char *s) {
 				// Doing nothing		
 			}
 			else if (t == 5) {
-				newStu -> gender = cur[0] - '0';
+				newStu -> gender = s[i] - '0';
 			}
 			t++;
 			pos = 0;
@@ -44,7 +45,7 @@ void inputStudentCSV(Student *&newStu, char *s) {
 	} 
 }
 
-void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, char* className) {
+void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, char* className, int add) {
 	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
 	char d[505] = "";
 	strcat(d, dirOut);
@@ -78,9 +79,11 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 			pCur = pCur -> studentNext;
 		}
 	}
+
 	Student *pCur = pStudent;
 	while (pCur != nullptr) {
-		fOut << pCur -> studentID << ' ' << pCur -> Name << ' ' << pCur -> DOB.month << "-" << pCur -> DOB.day << "-" << pCur -> DOB.year << ' ' << pCur -> gender << '\n';
+		if (add)
+			fOut << pCur -> studentID << ',' << pCur -> Name << ',' << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ',' << pCur -> gender << '\n';
 		pCur = pCur -> studentNext;
 	}
 }

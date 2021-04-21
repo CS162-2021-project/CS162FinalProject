@@ -19,4 +19,7 @@ int studentScreen(Student * pStudent, char* yearName, char* className);
 void createStudentScreen(Student *& pStudent, char* yearName, char* className);
 void createStudentCSVScreen(Student *& pStudent, char* yearName, char* className);
 
+int semesterScreen(char *yearName);
+void createSemesterScreen(Semester *& pSesmester, char *yearName);
+
 #endif

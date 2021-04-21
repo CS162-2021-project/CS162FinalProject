@@ -3,39 +3,45 @@
 
 using namespace std;
 
-void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName) {
+void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName, int add) {
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, yearName);
-	strcat(c, "\\semester.txt");
+	strcat(c, "\\Semester");
+	strcat(c, "\\Semester.txt");
 
 	ofstream fout;
-	fout.open(c);
+	if (add)
+		fout.open(c);
 
 	Semester* cur = pSemester;
 	if (pSemester == nullptr) {
 		pSemester = new Semester;
 		pSemester -> SemesterName = semesterName;
-		fout << pSemester -> SemesterName;
+		if (add)
+			fout << pSemester -> SemesterName;
 	}
 	else {
 		while (cur -> semesterNext != nullptr) {
-			fout << cur -> SemesterName << '\n';
+			if (add)
+				fout << cur -> SemesterName << '\n';
 			cur = cur -> semesterNext;
 		}
-		fout << cur -> SemesterName << '\n';
+		if (add)
+			fout << cur -> SemesterName << '\n';
 		cur -> semesterNext = new Semester;
 		cur = cur -> semesterNext;
 		cur -> SemesterName = semesterName;
-		fout << cur -> SemesterName;
+		if (add)
+			fout << cur -> SemesterName;
 	}
 	fout.close();
 
 	char d[500] = "mkdir ";
 	strcat(d, dirD);
 	strcat(d, yearName);
-	strcat(d, "\\");
+	strcat(d, "\\Semester\\");
 	strcat(d, semesterName);
 	system(d);
 }
