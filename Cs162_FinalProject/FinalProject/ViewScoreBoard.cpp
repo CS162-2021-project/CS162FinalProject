@@ -1,11 +1,13 @@
 #include"Student.h"
 #include"Header.h"
 #include<iostream>
+#include<string.h>
 using namespace std;
 
+
 void viewScoreBoard(Course* pCourse, char* studentID) {
-	while (pCourse) {
-		while (pCourse->pScoreboard) {
+	while (pCourse != nullptr) {
+		while (pCourse->pScoreboard != nullptr) {
 			if (strcmp(pCourse->pScoreboard->stu.studentID, studentID) == 0) {
 				cout << "Score of course :" << pCourse->id << endl;
 				cout << "Final score :";
@@ -23,4 +25,5 @@ void viewScoreBoard(Course* pCourse, char* studentID) {
 		}
 		pCourse = pCourse->courseNext;
 	}
+
 }
