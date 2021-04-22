@@ -7,13 +7,15 @@
 using namespace std;
 
 void inputStudent(Student *&newStu) {
+	cin.get();
+
 	cout << "Input the student's ID: ";
-	newStu -> studentID = new char[21];
-	cin >> newStu -> studentID;
+	newStu -> studentID = new char[51];
+	cin.getline(newStu -> studentID, 50);
 
 	cout << "Input the student's name: ";
-	newStu -> Name = new char[21];
-	cin >> newStu -> Name;
+	newStu -> Name = new char[51];
+	cin.getline(newStu -> Name, 50);
 
 	cout << "Input the student's date of birth.\n";
 	cout << "Year? ";
@@ -24,13 +26,33 @@ void inputStudent(Student *&newStu) {
 	cin >> newStu -> DOB.day;
 	cin.get();
 
-	cout << "Input the student's gender(type 1 if male, 0 if female): ";
+	cout << "Input the student's gender (type 0 if male, 1 if female): ";
 	cin >> newStu -> gender;
 	cin.get();
 	system("cls");
 }
 
 void addStudent(Student*& pStudent, char* yearName, char* className, Student *& newStu, int add) {
+	Student * cur = pStudent;
+	while (cur != nullptr) {
+		if  (strcmp(cur -> studentID, newStu -> studentID) == 0) {
+   			while (true) {
+   				cout << "A student with the same ID has already existed in this class\n";
+   				cout << "Do you want to replace him/her?\n";
+
+				cout << "Your input: ";
+				char *respond = new char[101]; cin >> respond;
+				system("cls");
+				if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+					cout << "Invalid, please try again\n\n";
+					continue;
+				}
+				if (respond[0] - '0' == 0) return;
+				else break;
+   			}
+		}
+		cur = cur -> studentNext;
+	}
 	char dirD[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
 	char d[505] = "";
 	strcat(d, dirD);

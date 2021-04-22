@@ -4,7 +4,7 @@
 
 #include "Header.h"
 
-void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, Date RegisterDate);
+void enrollStudent(Semester *& pSemester, Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, Date RegisterDate);
 
 void viewScoreBoard(Course* pCourse, char* studentID); // task 26
 

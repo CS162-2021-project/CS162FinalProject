@@ -6,6 +6,19 @@
 using namespace std;
 
 void createNewClass(Class*& pClass, char* yearName, char* className, int add) {
+	Class* cur = pClass;
+
+	while (cur != nullptr) {
+		if (strcmp(cur -> ClassName, className) == 0) {
+			cout << "Failed to create a new class!!\n";
+			cout << "The class you are about to create has already existed!!\n";
+			system("pause");
+			system("cls");
+			return;
+		}
+		cur = cur -> classNext;
+	}
+
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[500] = "";
 	strcat(c, dirD);
@@ -16,22 +29,13 @@ void createNewClass(Class*& pClass, char* yearName, char* className, int add) {
 	if (add)
 		fout.open(c);
 
-	Class* cur = pClass;
-
-	while (cur != nullptr) {
-		if (cur -> ClassName == className) {
-			cout << "The year you are about to create has already existed\n";
-			return;
-		}
-		cur = cur -> classNext;
-	}
-
 	cur = pClass;
 
 	if (pClass == nullptr) {
 		pClass = new Class;
 		pClass -> ClassName = className;
-		fout << pClass -> ClassName;
+		if (add)
+			fout << pClass -> ClassName;
 	}
 	else {
 		while (cur -> classNext != nullptr) {

@@ -1,15 +1,29 @@
-#include<bits/stdc++.h>
+#include <iostream>
 #include "Course.h"
 #include "Header.h"
 
 using namespace std;
 
-void ViewListOfCourse (Course *pCourse) {
-    while (pCourse) {
-        cout << "Course ID and Name: " << pCourse->id << " " << pCourse->name << endl;
-        cout << "Occur in: " << pCourse->date.d1 << " " << pCourse->date.s1 << " and " << pCourse->date.d2 << " " << pCourse->date.s2 << endl;
-        
+void viewListOfCourse (Course *pCourse) {
+	Course * pCur = pCourse;
+    while (pCur != nullptr) {
+        cout << "Course ID: " << pCur -> id << '\n';
+        cout << "Course Name: " << pCur -> name << '\n';
+        cout << "Lecturer Name: " << pCur -> lecturerName << '\n';
+		cout << "Number of Credit: " << pCur -> numberOfCredits << '\n';
+        cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur->date.s2 << '\n';
+        int cnt = 0;
+        Student* stuInCourse = pCur -> pStudent;
+        while (stuInCourse != nullptr) {
+        	cnt++;
+        	stuInCourse = stuInCourse -> studentNext;
+        }
+		cout << "Number of students registered: " << cnt << " / " << pCur -> maxStudent << '\n';
+		cout << '\n';
+
         // move to next course
-        pCourse = pCourse -> courseNext;
+        pCur = pCur -> courseNext;
     }
+    system("pause");
+    system("cls");
 }

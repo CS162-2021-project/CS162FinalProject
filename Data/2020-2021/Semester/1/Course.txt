@@ -1,0 +1,18 @@
+PH212
+Physics 2
+Nguyen Huu Nha
+4
+50
+THU
+S3
+FRI
+S3
+CS162
+Computer Science 2
+Dinh Ba Tien
+4
+40
+MON
+S1
+FRI
+S1

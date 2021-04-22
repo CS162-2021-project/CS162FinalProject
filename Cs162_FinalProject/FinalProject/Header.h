@@ -17,9 +17,9 @@ struct Time {
 };
 
 struct Date {
-	int day;
-	int month;
-	int year;
+	int day = -1;
+	int month = -1;
+	int year = -1;
 };
 
 struct Student
@@ -60,15 +60,17 @@ struct Year {
 
 struct Semester {
 	char *SemesterName;
+	Date startDate, endDate;
+	Date startReg, endReg;
 	Course *pCourse = nullptr;
 	Semester *semesterNext = nullptr;
 };
 
 struct dayPerformed {
-	char d1[5]; // day
-	char d2[5];
-	char s1[5];	// shift
-	char s2[5];
+	char *d1; // day
+	char *d2;
+	char *s1; // shift
+	char *s2;
 };
 
 struct Course {
@@ -78,7 +80,6 @@ struct Course {
 	int numberOfCredits;
 	int maxStudent;
 	dayPerformed date;
-	Date startDate, endDate;
 	Student* pStudent = nullptr;
 	Course* courseNext = nullptr;
 	Scoreboard* pScoreboard = nullptr;

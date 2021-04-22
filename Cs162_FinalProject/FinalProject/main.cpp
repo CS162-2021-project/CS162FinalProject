@@ -31,7 +31,7 @@ int main() {
 						createYearScreen(pYear);	
 					}
 					else {
-						// Ascess that year, might need to add a function to change password
+						// Access that year, might need to add a function to change password
 						Year* curYear = pYear;
 						int cntYear = 2;
 						while (curYear != nullptr && cntYear < respondYear) {
@@ -46,14 +46,60 @@ int main() {
 						while(true) { // Edit Class screen
 							int respondClass = classScreen(curYear -> YearName);
 							if (respondClass == 0)
-								break;
-							else if (respondClass == 1) { // Create a Class in this year
-								createClassScreen(curYear -> pClass, curYear -> YearName);
+								break;       
+							else if (respondClass == 1) { 
+								while (true) { // Check all semesters
+									int respondSemester = semesterScreen(curYear -> pSemester);
+									
+									if (respondSemester == 0)
+										break;
+									else if (respondSemester == 1) { // Create a new Semester in this year
+										createSemesterScreen(curYear -> pSemester, curYear -> YearName);	
+									}
+									else {
+     									// Access that semester
+     									Semester* curSemester = curYear -> pSemester;
+     									int cntSemester = 2;
+     									while (curSemester != nullptr && cntSemester < respondSemester) {
+     										curSemester = curSemester -> semesterNext;
+     										cntSemester++;
+     									}
+     									if (curSemester == nullptr || cntSemester < respondSemester) {
+     										cout << "Invalid, please try again\n\n";
+     										continue; 
+     									}
+
+     									while (true) { // Edit Course screen  
+     										int respondCourse = courseScreen(curSemester -> pCourse, curSemester -> SemesterName);
+
+     										if (respondCourse == 0)
+     											break;
+     										else if (respondCourse == 1) { // Create a course registration session
+												courseRegistration(curSemester);												     											
+     										}	
+     										else if (respondCourse == 2) { // Add a course to this semester
+     											addCourseScreen(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName);
+     										}
+     										else if (respondCourse == 3) {	// View the details of all the courses
+     											viewListOfCourse(curSemester -> pCourse);
+     										}
+											else {
+												// Access that Course
+												
+												int cnt = 4;
+     											// To be coded, really important
+											}
+     									}
+     								}
+								}
 							}
+							else if (respondClass == 2) { // Create a Class in this year
+								createClassScreen(curYear -> pClass, curYear -> YearName);
+							}                         
 							else {           
 								//Access that class
 								Class* curClass = curYear -> pClass;
-								int cntClass = 2;
+								int cntClass = 3;
 								while (curClass != nullptr && cntClass < respondClass) {
 									curClass = curClass -> classNext;
 									cntClass++;

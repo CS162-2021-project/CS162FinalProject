@@ -1,11 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <string.h>
 
 #include "Header.h"
 #include "Student.h"
 
 using namespace std;
 
-void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, Date RegisterDate) { 
+void enrollStudent(Semester *& pSemester, Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, Date RegisterDate) { 
 	Course *curCourse = pCourse;
 	while (curCourse && strcmp(curCourse -> id, CourseID) != 0) {
 		curCourse = curCourse -> courseNext;
@@ -17,9 +19,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	}
 
 
-	if (!((curCourse -> startDate.year <= RegisterDate.year) && (curCourse -> startDate.month <= RegisterDate.month) && (curCourse -> startDate.day <= RegisterDate.day) &&
-		(RegisterDate.year <= curCourse -> endDate.year) && (RegisterDate.month <= curCourse -> endDate.month) && (RegisterDate.day <= curCourse -> endDate.day))) {
-			cout << "The registration phase has expired, cannot enrolled\n";
+	if (!((pSemester -> startReg.year <= RegisterDate.year) && (pSemester -> startReg.month <= RegisterDate.month) && (pSemester -> startReg.day <= RegisterDate.day) &&
+		(RegisterDate.year <= pSemester -> endReg.year) && (RegisterDate.month <= pSemester -> endReg.month) && (RegisterDate.day <= pSemester -> endReg.day))) {
+			cout << "The registration phase has expired or not exist, cannot enrolled\n";
 			return;
 		}
 	

@@ -6,18 +6,21 @@
 using namespace std;
 
 void createNewYear(Year*& pYear, char* yearName, int add) {
-	ofstream fout;
-	if (add)
-		fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
-
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
-		if (pCur -> YearName == yearName) {
-			cout << "The year you are about to create has already existed\n";
+		if (strcmp(pCur -> YearName, yearName) == 0) {
+			cout << "Failed to create a new year!!\n";
+			cout << "The year you are about to create has already existed!!\n";
+			system("pause");
+			system("cls");
 			return;
 		}
 		pCur = pCur -> yearNext;
 	}
+
+	ofstream fout;
+	if (add)
+		fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
 
 	pCur = pYear;
 	if (pYear == nullptr) {
