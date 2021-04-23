@@ -11,28 +11,28 @@ void updateCourse(Course*& pCourse, char* courseID) {
     }
 
     cout << "Choose 1 of these functions:";
-    cout << "1. Course ID" << endl;
-    cout << "2. Course name" << endl;
-    cout << "3. Lecturer name" << endl;
+    cout << "1. Course's ID" << endl;
+    cout << "2. Course's name" << endl;
+    cout << "3. Lecturer's name" << endl;
     cout << "4. Number of credits" << endl;
     cout << "5. Max students" << endl;
     cout << "6. Session and Shifts" << endl;
-    cout << "which information you want to update?" << endl;
+    cout << "which information do you want to update?" << endl;
     int x;
     cin >> x;
 
     if (x == 1) {
-        cout << "New course ID:";
+        cout << "New course's ID:";
         cin.ignore(1001, '\n');
         cin.get(pCur->id, 101, '\n');
     }
     else if (x == 2) {
-        cout << "New course name:";
+        cout << "New course's name:";
         cin.ignore(1001, '\n');
         cin.get(pCur->name, 101, '\n');
     }
     else if (x == 3) {
-        cout << "New lecturer name:";
+        cout << "New lecturer's name:";
         cin.ignore(1001, '\n');
         cin.get(pCur->lecturerName, 101, '\n');
     }
