@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "Header.h"
 #include "Class.h"
 #include "Course.h"
@@ -22,18 +23,22 @@ int main() {
 		if (respondRole == 0) 
 			break;
 		else if (respondRole == 1) {
-			if (LogIn(1)) { // Login as a Staff
+			char * filler;
+			if (LogIn(1, filler)) { // Login as a Staff
 				while(true) { // Edit Year screen
 					int respondYear = yearScreen();
 					if (respondYear == 0) 
 						break;
-					else if (respondYear == 1) { // Create a School Year
+					else if (respondYear == 1) { // Change password
+						// To be coded
+					}	
+					else if (respondYear == 2) { // Create a School Year
 						createYearScreen(pYear);	
 					}
 					else {
 						// Access that year, might need to add a function to change password
 						Year* curYear = pYear;
-						int cntYear = 2;
+						int cntYear = 3;
 						while (curYear != nullptr && cntYear < respondYear) {
 							curYear = curYear -> yearNext;
 							cntYear++;
@@ -105,10 +110,15 @@ int main() {
 	     											else if (respondEditCourse == 1) { // Update course information
 														updateCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
 	     											}
-	     											else if (respondEditCourse == 2) { // Delete the current course
+	     											else if (respondEditCourse == 2) { // View list of students in this course
+	     												// To be coded
+	     											}
+	     											else if (respondEditCourse == 3) { // Delete the current course
 														deleteCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
 														break;
 	     											}
+	     											else 
+	     												cout << "Invalid, please try again\n\n";
 												}
 											}
      									}
@@ -152,19 +162,56 @@ int main() {
 			}
 		}
 		else if (respondRole == 2) {
-			if (LogIn(2)) { // Login as a Student
-				// To be coded
-				int respondActivity = activityScreen();
-				if (respondActivity == 0)
-					break;
-				else if (respondActivity == 1) { // Enroll in a course
-					enrollCourseScreen();
-				}
-				else if (respondActivity == 2) { // View list of all enrolled courses
-					// To be coded
-				}
-				else if (respondActivity == 3) { // View his/her scoreboard
-					// To be coded
+			char * studentID;
+			if (LogIn(2, studentID)) { // Login as a Student
+				while (true) {  // Choose a semester to enroll
+    				char * yearName = new char[51];
+    				int tmp = (studentID[0] - '0') * 10 + studentID[1] - '0';
+    				char tmp_c[40];
+    				strcat(yearName, "20");
+    				strcat(yearName, itoa(tmp, tmp_c, 10));
+    				strcat(yearName, "-20");
+    				strcat(yearName, itoa(tmp + 1, tmp_c, 10));
+
+    				Year * curYear = pYear;
+    				while (curYear && strcmp(curYear -> YearName, yearName) != 0)
+    					curYear = curYear -> yearNext;
+    						
+    				int respondSemester = enrollSemesterScreen(curYear, studentID);
+    				if (respondSemester == 0)
+    					break;
+    				else if (respondSemester == 1) {// Change password
+    					// To be coded
+    				}						
+    				else {
+         				// Access that semester
+       					Semester* curSemester = curYear -> pSemester;
+       					int cntSemester = 2;
+       					while (curSemester != nullptr && cntSemester < respondSemester) {
+       						curSemester = curSemester -> semesterNext;
+       						cntSemester++;
+       					}
+       					if (curSemester == nullptr || cntSemester < respondSemester) {
+       						cout << "Invalid, please try again\n\n";
+       						continue; 
+       					}
+
+       					while (true) {
+       						int respondCourse = enrollCourseScreen();
+
+       						if (respondCourse == 0)
+       							break;
+       						else if (respondCourse == 1) { // Choose a course to enroll
+       							// To be coded
+       						}	
+       						else if (respondCourse == 2) { // View list of enrolled course
+       							// To be coded
+       						}
+       						else if (respondCourse == 3) { // View scoreboard in this semester
+       							// To be coded
+       						}
+       					}
+    				}
 				}
 			}
 		}

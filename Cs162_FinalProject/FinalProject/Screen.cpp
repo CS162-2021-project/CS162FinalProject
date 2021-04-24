@@ -35,9 +35,10 @@ int yearScreen() {
 	while(1) {
 		cout << "Please input your choice Staff: \n";
 		cout << "0: Logout\n";
-		cout << "1: Create a new school year\n";
+		cout << "1: Change password\n";
+		cout << "2: Create a new school year\n";
 		char *s = new char[51];
-		int cnt = 2;
+		int cnt = 3;
 		ifstream fIn("C:\\Github\\CS162FinalProject\\Data\\Year.txt");
 		while(fIn >> s)
 			cout << cnt++ << ": Access year " << s << '\n';
@@ -282,7 +283,8 @@ int editCourseScreen(Course *& curCourse) {
   		cout << "Please input your choice: \n";
   		cout << "0: Go back\n";
   		cout << "1: Update this course information\n";
-  		cout << "2: Delete this course\n";
+  		cout << "2: View list of students in this course\n";
+  		cout << "3: Delete this course\n";
 
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
@@ -295,13 +297,56 @@ int editCourseScreen(Course *& curCourse) {
 	}
 }
 
-int activityScreen() {
+int enrollSemesterScreen(Year *& pYear, char * studentID) {
+	Student *curStudent = nullptr;
+	Class * curClass = pYear -> pClass;
+	while (curStudent == nullptr && curClass != nullptr) {
+		Student *tmpStudent = curClass -> pStudent;
+		while (tmpStudent != nullptr) {
+			if (strcmp(tmpStudent -> studentID, curStudent -> studentID) == 0) {
+				curStudent = tmpStudent;
+				break;
+			}			
+		}
+		curClass = curClass -> classNext;
+	}
+
 	while(1) {
-		cout << "Please input your choice Student: \n";
-		cout << "0: Logout\n";
+		cout << curStudent -> studentID << '\n';
+		cout << curStudent -> Name << '\n';
+		cout << ((curStudent -> gender) ? "Female" : "Male") << '\n';
+		cout << curStudent -> DOB.month << '/' << curStudent -> DOB.day << '/' << curStudent -> DOB.year << "\n\n";
+
+		cout << "Please input your choice: \n";
+
+		cout << "0: Go back\n";   
+		cout << "1: Change password\n";
+		int cnt = 2;
+		Semester * pCur = pYear -> pSemester;
+		while (pCur != nullptr) {
+			cout << cnt++ << ": Access semester " << pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
+				" to " << pCur->endDate.month << '/' << pCur->endDate.day << '/' << pCur->endDate.year << ")" << '\n';
+			pCur = pCur -> semesterNext;
+		}
+
+		cout << "Your input: ";
+		char *respond = new char[101]; cin >> respond;
+		system("cls");
+		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+			cout << "Invalid, please try again\n\n";
+			continue;
+		}
+		return respond[0] - '0';
+	}				
+}
+
+int enrollCourseScreen() {
+	while(1) {
+		cout << "Please input your choice: \n";
+		cout << "0: Go back\n";
 		cout << "1: Enroll in a course\n";
-		cout << "2: View list of enrolled courses\n";
-		cout << "3: View your scoreboard\n";
+		cout << "2: View list of your enrolled courses in this semester\n";
+		cout << "3: View your scoreboard in this semester\n";
 
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
@@ -311,9 +356,5 @@ int activityScreen() {
 		}
 
 		return respond[0] - '0';
-	}	
-}
-
-void enrollCourseScreen() {
-	
+	}
 }

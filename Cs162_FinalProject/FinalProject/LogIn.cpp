@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool LogIn(int t){
+bool LogIn(int t, char *& studentID){
 	char ad[200] = "";
 	bool login = false;
 	bool StillLog = true;
@@ -42,6 +42,8 @@ bool LogIn(int t){
 		char name[101], pass[101];
 		while(fin >> name && fin >> pass){
 			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
+				studentID = new char[101];
+				strcpy(name, studentID);
 				system("cls");
 				cout << "You have logged in!\n\n";
 				login = true;
