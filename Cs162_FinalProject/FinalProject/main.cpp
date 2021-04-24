@@ -86,8 +86,30 @@ int main() {
 											else {
 												// Access that Course
 												
-												int cnt = 4;
-     											// To be coded, really important
+												int cntCourse = 4;
+												Course *curCourse = curSemester -> pCourse;
+												while (curCourse != nullptr && cntCourse < respondCourse) {
+													curCourse = curCourse -> courseNext;
+													cntCourse++;
+												}
+												if (curCourse == nullptr || cntCourse < respondCourse) {
+     												cout << "Invalid, please try again\n\n";
+		     										continue;
+												}
+
+     											while (true) { // Edit the current course
+	     											int respondEditCourse = editCourseScreen(curCourse);
+	     											if (respondEditCourse == 0) {
+    	 												break;
+	     											}
+	     											else if (respondEditCourse == 1) { // Update course information
+														updateCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
+	     											}
+	     											else if (respondEditCourse == 2) { // Delete the current course
+														deleteCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
+														break;
+	     											}
+												}
 											}
      									}
      								}
@@ -132,6 +154,18 @@ int main() {
 		else if (respondRole == 2) {
 			if (LogIn(2)) { // Login as a Student
 				// To be coded
+				int respondActivity = activityScreen();
+				if (respondActivity == 0)
+					break;
+				else if (respondActivity == 1) { // Enroll in a course
+					enrollCourseScreen();
+				}
+				else if (respondActivity == 2) { // View list of all enrolled courses
+					// To be coded
+				}
+				else if (respondActivity == 3) { // View his/her scoreboard
+					// To be coded
+				}
 			}
 		}
 		else

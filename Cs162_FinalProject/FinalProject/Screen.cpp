@@ -156,7 +156,7 @@ int semesterScreen(Semester *& pSemester) {
 		int cnt = 2;
 		Semester * pCur = pSemester;
 		while (pCur != nullptr) {
-			cout << cnt++ << ": Access semester " << pCur -> SemesterName << "(From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
+			cout << cnt++ << ": Access semester " << pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
 				" to " << pCur->endDate.month << '/' << pCur->endDate.day << '/' << pCur->endDate.year << ")" << '\n';
 			pCur = pCur -> semesterNext;
 		}
@@ -251,14 +251,69 @@ void addCourseScreen(Course *& pCourse, char* yearName, char* semesterName) {
     newCourse -> date.s1 = new char[5];
     newCourse -> date.d2 = new char[5];
     newCourse -> date.s2 = new char[5];
-    cout << "Session 1: ";
+    cout << "Day 1: ";
 	cin.getline(newCourse -> date.d1, 5);
     cout << "Shift 1: "; newCourse->date.s1;
 	cin.getline(newCourse -> date.s1, 5);
-    cout << "Session 2: ";
+    cout << "Day 2: ";
 	cin.getline(newCourse -> date.d2, 5);
     cout << "Shift 2: "; newCourse->date.s1;
 	cin.getline(newCourse -> date.s2, 5);
 	addNewCourse(pCourse, semesterName, yearName, newCourse, 1);
 	system("cls");
+}
+
+int editCourseScreen(Course *& curCourse) {
+	while (true) {
+		cout << "Course ID: " << curCourse -> id << '\n';
+	    cout << "Course Name: " << curCourse -> name << '\n';
+	    cout << "Lecturer Name: " << curCourse -> lecturerName << '\n';
+		cout << "Number of Credit: " << curCourse -> numberOfCredits << '\n';
+	    cout << "Occur in: " << curCourse -> date.d1 << " " << curCourse -> date.s1 << " and " << curCourse -> date.d2 << " " << curCourse -> date.s2 << '\n';
+	    int cnt = 0;
+	    Student* stuInCourse = curCourse -> pStudent;
+	    while (stuInCourse != nullptr) {
+	    	cnt++;
+	    	stuInCourse = stuInCourse -> studentNext;
+	    }
+		cout << "Number of students registered: " << cnt << " / " << curCourse -> maxStudent << '\n';
+  		cout << '\n';
+
+  		cout << "Please input your choice: \n";
+  		cout << "0: Go back\n";
+  		cout << "1: Update this course information\n";
+  		cout << "2: Delete this course\n";
+
+		cout << "Your input: ";
+		char *respond = new char[101]; cin >> respond;
+		system("cls");
+		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+			cout << "Invalid, please try again\n\n";
+			continue;
+		}
+		return respond[0] - '0';
+	}
+}
+
+int activityScreen() {
+	while(1) {
+		cout << "Please input your choice Student: \n";
+		cout << "0: Logout\n";
+		cout << "1: Enroll in a course\n";
+		cout << "2: View list of enrolled courses\n";
+		cout << "3: View your scoreboard\n";
+
+		char *respond = new char[101]; cin >> respond;
+		system("cls");
+		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+			cout << "Invalid, please try again\n\n";
+			continue;
+		}
+
+		return respond[0] - '0';
+	}	
+}
+
+void enrollCourseScreen() {
+	
 }

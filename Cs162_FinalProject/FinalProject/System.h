@@ -24,4 +24,10 @@ void createSemesterScreen(Semester *& pSemester, char* yearName);
 
 int courseScreen(Course *& pCourse, char* semesterName);
 void addCourseScreen(Course *& pCourse, char* yearName, char* semesterName);
+
+int editCourseScreen(Course *& curCourse);
+
+int activityScreen();
+void enrollCourseScreen();
+
 #endif

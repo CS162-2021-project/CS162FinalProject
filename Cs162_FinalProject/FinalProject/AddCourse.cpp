@@ -13,6 +13,8 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course *
    			while (true) {
    				cout << "A course with the same ID has already existed in this semester\n";
    				cout << "Do you want to replace it?\n";
+   				cout << "0: No\n";
+   				cout << "1: Yes\n";
 
 				cout << "Your input: ";
 				char *respond = new char[101]; cin >> respond;
@@ -53,7 +55,7 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course *
         pCur -> courseNext = newCourse;
         pCur = pCur -> courseNext;
     }
-    // get info
+
     if (add == 1) {
     	pCur = pCourse;
     	while (pCur != nullptr) {

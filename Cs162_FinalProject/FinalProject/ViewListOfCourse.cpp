@@ -11,7 +11,7 @@ void viewListOfCourse (Course *pCourse) {
         cout << "Course Name: " << pCur -> name << '\n';
         cout << "Lecturer Name: " << pCur -> lecturerName << '\n';
 		cout << "Number of Credit: " << pCur -> numberOfCredits << '\n';
-        cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur->date.s2 << '\n';
+        cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';
         int cnt = 0;
         Student* stuInCourse = pCur -> pStudent;
         while (stuInCourse != nullptr) {

@@ -25,11 +25,11 @@ void viewListOfCourse(Course * pCourse);
 
  // Delete Course
 
-void deleteCourse (Course*& pHead, char *courseID);
+void deleteCourse (Course*& pCourse, char* yearName, char* semesterName, char* courseID);
 
 // Update Course
 
-void updateCourse (Course*& pHead , char* courseID);
+void updateCourse (Course*& pCourse, char* yearName, char* semesterName, char* courseID);
 
   
 #endif // !_COURSE_H_

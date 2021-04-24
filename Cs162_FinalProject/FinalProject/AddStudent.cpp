@@ -39,6 +39,8 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
    			while (true) {
    				cout << "A student with the same ID has already existed in this class\n";
    				cout << "Do you want to replace him/her?\n";
+   				cout << "0: No\n";
+   				cout << "1: Yes\n";
 
 				cout << "Your input: ";
 				char *respond = new char[101]; cin >> respond;
