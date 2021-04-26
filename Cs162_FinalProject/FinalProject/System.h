@@ -8,6 +8,7 @@ void loadData(Year *& pYear);
 
 int chooseRoleScreen();
 bool LogIn(int t, char *& studentID);
+void changePassword(int t, char * username);
 
 int yearScreen();
 void createYearScreen(Year*& pYear);
@@ -28,6 +29,10 @@ void addCourseScreen(Course *& pCourse, char* yearName, char* semesterName);
 int editCourseScreen(Course *& curCourse);
 
 int enrollSemesterScreen(Year *& pYeawr, char * studentID);
-int enrollCourseScreen();
+int enrollCourseScreen(char *semesterName);
+int chooseCourse(Course *& pCourse);
+
+int viewAndDeleteCourseScreen(Course *& pCourse);
+void deleteCourseScreen(Course *& pCourse, char * yearName, char * semesterName);
 
 #endif

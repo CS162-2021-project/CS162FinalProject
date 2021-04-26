@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool LogIn(int t, char *& studentID){
+bool LogIn(int t, char *& UN){
 	char ad[200] = "";
 	bool login = false;
 	bool StillLog = true;
@@ -17,7 +17,7 @@ bool LogIn(int t, char *& studentID){
 		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");			
 	
 	while(!login || StillLog){
-		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << " ?\n";
+		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << " ?\n\n";
 		cout << "0: Go back\n";
 		cout << "1: Log in\n";
 
@@ -42,8 +42,8 @@ bool LogIn(int t, char *& studentID){
 		char name[101], pass[101];
 		while(fin >> name && fin >> pass){
 			if(strcmp(name,Username) == 0 && strcmp(pass, Password) == 0){
-				studentID = new char[101];
-				strcpy(name, studentID);
+				UN = new char[101];
+				strcpy(UN, name);
 				system("cls");
 				cout << "You have logged in!\n\n";
 				login = true;

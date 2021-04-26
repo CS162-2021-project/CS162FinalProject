@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <ctime>
 #include "Header.h"
 #include "Class.h"
 #include "Course.h"
@@ -23,14 +24,14 @@ int main() {
 		if (respondRole == 0) 
 			break;
 		else if (respondRole == 1) {
-			char * filler;
-			if (LogIn(1, filler)) { // Login as a Staff
+			char * userName;
+			if (LogIn(1, userName)) { // Login as a Staff
 				while(true) { // Edit Year screen
 					int respondYear = yearScreen();
 					if (respondYear == 0) 
 						break;
 					else if (respondYear == 1) { // Change password
-						// To be coded
+						changePassword(1, userName);
 					}	
 					else if (respondYear == 2) { // Create a School Year
 						createYearScreen(pYear);	
@@ -176,12 +177,36 @@ int main() {
     				Year * curYear = pYear;
     				while (curYear && strcmp(curYear -> YearName, yearName) != 0)
     					curYear = curYear -> yearNext;
-    						
+
+    				Student * curStudent = nullptr;
+					Class * curClass = curYear -> pClass;
+					while (curClass) {
+						Student * tmpStudent = curClass -> pStudent;
+						while (tmpStudent) {
+							if (strcmp(tmpStudent -> studentID, studentID) == 0) {
+								curStudent = tmpStudent;
+								break;
+							}	
+							tmpStudent = tmpStudent -> studentNext;
+						}
+						if (curStudent != nullptr) break;
+						curClass = curClass -> classNext;
+					}
+
+
+					time_t cur_t = time(0);
+					tm* now = localtime(&cur_t);
+					Date RegisterDate;
+					RegisterDate.day = now -> tm_mday;
+					RegisterDate.month = now -> tm_mon + 1;
+					RegisterDate.year = now -> tm_year + 1900;
+
+					    						
     				int respondSemester = enrollSemesterScreen(curYear, studentID);
     				if (respondSemester == 0)
     					break;
     				else if (respondSemester == 1) {// Change password
-    					// To be coded
+    					changePassword(2, studentID);
     				}						
     				else {
          				// Access that semester
@@ -197,15 +222,53 @@ int main() {
        					}
 
        					while (true) {
-       						int respondCourse = enrollCourseScreen();
+       						int respondCourse = enrollCourseScreen(curSemester -> SemesterName);
 
        						if (respondCourse == 0)
        							break;
        						else if (respondCourse == 1) { // Choose a course to enroll
-       							// To be coded
+
+       							bool ok_s = false, ok_l = false;
+       							if (curSemester -> startReg.year < RegisterDate.year) ok_s = true;
+       							if (curSemester -> startReg.year == RegisterDate.year && curSemester -> startReg.month < RegisterDate.month) ok_s = true;
+       							if (curSemester -> startReg.year == RegisterDate.year && curSemester -> startReg.month == RegisterDate.month && curSemester -> startReg.day < RegisterDate.day) ok_s = true;
+       							if (RegisterDate.year < curSemester -> endReg.year) ok_l = true;
+       							if (RegisterDate.year == curSemester -> endReg.year && RegisterDate.month < curSemester -> endReg.month) ok_l = true;
+       							if (RegisterDate.year == curSemester -> endReg.year && RegisterDate.month == curSemester -> endReg.month && RegisterDate.day < curSemester -> endReg.day) ok_l = true;
+
+								if (!ok_s || !ok_l) {
+                            		cout << "The registration phase has expired or not exist, cannot enrolled\n\n";
+                            		continue;
+								}
+
+								while (true) { // List of course to choose screen
+									int respondChooseCourse = chooseCourse(curSemester -> pCourse);
+
+									if (respondChooseCourse == 0)
+										break;
+									else {
+										int cntCourse = 1;
+										Course * curCourse = curSemester -> pCourse;
+										while(curCourse && cntCourse < respondChooseCourse) {
+											cntCourse++;
+											curCourse = curCourse -> courseNext;
+										}
+										if (curCourse == nullptr || cntCourse < respondChooseCourse) {
+											cout << "Invalid, please try again\n\n";
+											continue;
+										}
+										enrollStudent(curSemester -> pCourse, curClass -> pStudent, curCourse -> id, curStudent -> studentID, curYear -> YearName, curSemester -> SemesterName, 1);
+									}
+								}
        						}	
        						else if (respondCourse == 2) { // View list of enrolled course
-       							// To be coded
+       							while(1) {
+	       							int respondViewAndDelete = viewAndDeleteCourseScreen(curStudent -> pCourse);
+	       							if (respondViewAndDelete == 0) 
+	       								break;
+									else
+										deleteCourseScreen(curStudent -> pCourse, curYear -> YearName, curSemester -> SemesterName);
+								}
        						}
        						else if (respondCourse == 3) { // View scoreboard in this semester
        							// To be coded

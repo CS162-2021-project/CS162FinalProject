@@ -7,6 +7,9 @@
 
 using namespace std;
 
+// Not needed
+
+/*
 bool isExistCourse(char courseID[], char year[], char semester[], char className[], char fileAdd[], int& maxno) {
 	ifstream in;
 	char a[200] = {};
@@ -35,7 +38,7 @@ bool isExistCourse(char courseID[], char year[], char semester[], char className
 		while (!in.eof()) {
 			in.get(a, 200, '\n');
 			in.ignore(200, '\n');
-			if (/*isSameStr(a, courseID)*/true) {
+			if (true) {
 				in.close();
 				return true;
 			}
@@ -80,3 +83,4 @@ void inputCourse(schedule& c, char year[], char semester[], char className[], ch
 		//inputCourseData(c, id, maxno, className);
 	}
 }
+*/

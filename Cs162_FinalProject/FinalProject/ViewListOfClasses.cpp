@@ -1,7 +1,7 @@
-#include<string.h>
+#include <string.h>
 #include "Course.h"
 #include "Header.h"
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 void viewListOfCLasses(Year* pYear) {

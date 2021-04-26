@@ -101,7 +101,7 @@ void loadData(Year *& pYear) {
 				while(strcmp(curStudent -> Name, newStu -> Name) != 0)
 					curStudent = curStudent -> studentNext;
 
-				// load some data to current student
+				// Load some data to current student
 			}
  		}
 

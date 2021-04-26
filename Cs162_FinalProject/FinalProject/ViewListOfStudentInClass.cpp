@@ -1,9 +1,14 @@
-#include"Header.h"
-#include"Course.h"
-#include"Staff.h"
-#include<iostream>
+#include "Header.h"
+#include "Course.h"
+#include "Staff.h"
+#include <string.h>
+#include <iostream>
+
 using namespace std;
 
+// Contain bugs, i've already fixed it in another area
+
+/*
 void viewListOfStudentsInClass(Year* pYear, char* className) {
 	while (pYear) {
 		while (pYear->pClass) {
@@ -26,3 +31,4 @@ void viewStudentInfo(Student student) {
 	if (student.gender) cout << "female" << endl;
 	else cout << "male" << endl;
 }
+*/ 

@@ -42,7 +42,7 @@ void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
         }
     }
 
-    char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
     char c[500] = "";
     strcat(c, dirD);
     strcat(c, yearName);
@@ -62,5 +62,5 @@ void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
         fout << pCur -> date.d1 << '\n' << pCur->date.s1 << '\n';
 	    fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
     	pCur = pCur -> courseNext;
-	}
+ 	}
 }

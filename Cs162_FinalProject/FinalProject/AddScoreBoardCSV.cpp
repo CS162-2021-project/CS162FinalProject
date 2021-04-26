@@ -1,4 +1,4 @@
-#include<iosteam>
+#include<iostream>
 #include<fstream>
 #include"Staff.h"
 #include"Header.h"
