@@ -1,16 +1,18 @@
-#include<iostream>
-#include<fstream>
-#include"Staff.h"
-#include"Header.h"
+#include <iostream>
+#include <fstream>
+#include <string.h>
+#include "Staff.h"
+#include "Header.h"
 
 using namespace std;
 
 void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 	int t = 0, n = strlen(s);
-	char *cur = new char[50], 
+	char *cur = new char[50]; 
 	int pos = 0;
 	for (int i = 0; i < n; i++) {
 		if (i == n - 1 || s[i] == ',') {
+			cur[pos] = '\0';
 			if (t == 0) {
 				//Do nothing
 			}
@@ -27,15 +29,15 @@ void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 				newScr -> stu -> Name[pos] = '\0';
 			}
 			else if (t == 3) {
-				newScr -> midterm = atof(cur[0]);
+				newScr -> midterm = atof(cur);
 			}
 			else if (t == 4) {
-				newScr -> final = atof(cur[0]); 
+				newScr -> final = atof(cur); 
 			}
 			else if (t == 5) {
-				newScr -> bonus = atof(cur[0]); 
+				newScr -> bonus = atof(cur); 
 			}else if(t == 6) {
-				newScr -> total = atof(cur[0]);
+				newScr -> total = atof(cur);
 			}
 			t++;
 			pos = 0;
@@ -46,7 +48,8 @@ void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 }
 
 
-void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, char* coursename) {
+void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, char* courseName) {
+	/* The course has already been chosen in courseName so we don't need this part
 	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
 	char d[505] = "";
 	strcat(d, dirOut);
@@ -79,9 +82,10 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 		cin.get(mycourse, 20, '\n'); 
 	}
 	fin.close();
+	*/
 	
 	char dc[201] = "";
-	strcat(dc, mycourse);
+	strcat(dc, courseName);
 	strcat(dc, ".txt");
 	
 	char ddd[505] = "";
@@ -92,12 +96,13 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 	strcat(ddd, "\\");
 	strcat(ddd, dc);
 	
-	
 	ofstream fOut(ddd);
+
 	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\Scoreboard_csv\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
-	strcat(dd, mycourse);
+	strcat(dd, courseName);
+	strcat(dd, ".csv");
 
 	ifstream fIn(dd);
 
@@ -121,4 +126,6 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 		fOut << pCur -> stu -> studentID << ' ' << pCur -> stu -> Name << ' ' << pCur -> midterm << "-" << pCur -> final << "-" << pCur -> bonus << ' ' << pCur -> total << '\n';
 		pCur = pCur -> scoreboardNext;
 	}
+	fOut.close();
+	delete[] s;
 }

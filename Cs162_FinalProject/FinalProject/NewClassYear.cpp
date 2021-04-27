@@ -47,7 +47,8 @@ void createNewYear(Year*& pYear, char* yearName, int add) {
 		fout.close();
 
 	char dirD[] = "C:\\GitHub\\CS162FinalProject\\Data\\";
-	char c[500] = "mkdir ";
+	char c[500] = "";
+	strcat(c, "mkdir ");
 	strcat(c, dirD);
 	strcat(c, yearName);
 	system(c);

@@ -10,31 +10,27 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course *
    	Course * pCur = pCourse;
    	while (pCur != nullptr) {
    		if (strcmp(pCur -> id, newCourse -> id) == 0) {
-   			while (true) {
-   				cout << "A course with the same ID has already existed in this semester\n";
-   				cout << "Do you want to replace it?\n";
-   				cout << "0: No\n";
-   				cout << "1: Yes\n";
-
-				cout << "Your input: ";
-				char *respond = new char[101]; cin >> respond;
-				system("cls");
-				if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
-					cout << "Invalid, please try again\n\n";
-					continue;
-				}
-				if (respond[0] - '0' == 0) return;
-				else break;
-   			}
+			cout << "Failed to add a new course!!\n";
+			cout << "The course you are about to add has already existed!!\n";
+			system("pause");
+			system("cls");
+			return;
    		}
    		pCur = pCur -> courseNext;
    	}
     char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
-    char c[500] = "";
+    char c[505] = "";
     strcat(c, dirD);
     strcat(c, yearName);
     strcat(c, "\\Semester\\");
     strcat(c, semesterName);
+
+	char mkdir[505] = "mkdir ";
+	strcat(mkdir, c);
+	strcat(mkdir, "\\");
+	strcat(mkdir, newCourse -> id);
+	system(mkdir);
+
     strcat(c, "\\Course.txt");
 
     ofstream fout;
