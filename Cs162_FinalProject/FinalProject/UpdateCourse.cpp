@@ -14,14 +14,16 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
     
     int x;
     while(1) {
+    	cout << "0: Go back\n\n";
+
 	    cout << "Choose 1 of these functions:\n";
-	    cout << "1. Course's ID" << endl;
-	    cout << "2. Course's name" << endl;
-	    cout << "3. Lecturer's name" << endl;
-	    cout << "4. Number of credits" << endl;
-	    cout << "5. Max students" << endl;
-	    cout << "6. Session and Shifts" << endl;
-	    cout << "which information do you want to update?" << endl;
+	    cout << "1: Course's ID" << endl;
+	    cout << "2: Course's name" << endl;
+	    cout << "3: Lecturer's name" << endl;
+	    cout << "4: Number of credits" << endl;
+	    cout << "5: Max students" << endl;
+	    cout << "6: Session and Shifts" << endl;
+	    cout << "Which information do you want to update?" << "\n\n";
 
    		cout << "Your input: ";
    		char *respond = new char[101]; cin >> respond;
@@ -33,6 +35,9 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
    		x = respond[0] - '0';
    		break;
 	}
+
+	if (x == 0)
+		return;
 
     if (x == 1) {
         cout << "New course's ID:";
@@ -88,4 +93,5 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 	    fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
     	pCur = pCur -> courseNext;
 	}
+	fout.close();
 }

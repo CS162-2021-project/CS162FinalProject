@@ -203,6 +203,34 @@ void loadData(Year *& pYear) {
 						curCourse = curCourse -> courseNext;
 	
 					// Load some data to current Course					
+					char dir_course[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+					strcat(dir_course, yearName);
+					strcat(dir_course, "\\Semester\\");
+					strcat(dir_course, semesterName);
+					strcat(dir_course, "\\");
+					strcat(dir_course, newCourse -> id);
+					strcat(dir_course, "\\Student.txt");
+
+					ifstream fIn(dir_course);
+					char *studentID = new char[101];
+					while (fIn >> studentID) {
+	    				Student * curStudent = nullptr;
+    					Class * curClass = curYear -> pClass;
+    					while (curClass) {
+    						Student * tmpStudent = curClass -> pStudent;
+    						while (tmpStudent) {
+    							if (strcmp(tmpStudent -> studentID, studentID) == 0) {
+    								curStudent = tmpStudent;
+    								break;
+    							}	
+    							tmpStudent = tmpStudent -> studentNext;
+    						}
+    						if (curStudent != nullptr) break;
+    						curClass = curClass -> classNext;
+    					}
+
+    					enrollStudent(curSemester -> pCourse, curClass -> pStudent, newCourse -> id, studentID, yearName, semesterName, 0);
+					}
 				}
 			}
 		}			

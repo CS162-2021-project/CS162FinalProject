@@ -9,9 +9,9 @@ using namespace std;
 
 void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* courseID) {
 	while(1) {
-		cout << "Are you sure to delete this course?\n";
+		cout << "Are you sure you want to delete this course?\n\n";
 		cout << "0: No\n";
-		cout << "1: Yes\n";
+		cout << "1: Yes\n\n";
 
    		cout << "Your input: ";
    		char *respond = new char[101]; cin >> respond;

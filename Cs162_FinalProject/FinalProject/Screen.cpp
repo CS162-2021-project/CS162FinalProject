@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <iomanip>
 #include "Header.h"
 #include "Class.h"
 #include "Course.h"
@@ -14,20 +15,24 @@ using namespace std;
 
 int chooseRoleScreen() {
 	while(1) {
+		cout << "Welcome to the HCMUS Course Registration system\n\n";
+
 		cout << "Please input your choice: \n\n";
-		cout << "0: Exit the programme\n";
+		cout << "0: Exit the programme\n\n";
 		cout << "1: Access as a staff\n";
 		cout << "2: Access as a student\n";
 
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -35,7 +40,7 @@ int yearScreen() {
 	while(1) {
 		cout << "Please input your choice Staff: \n\n";
 		cout << "0: Logout\n";
-		cout << "1: Change password\n";
+		cout << "1: Change password\n\n";
 		cout << "2: Create a new school year\n";
 		char *s = new char[51];
 		int cnt = 3;
@@ -47,12 +52,14 @@ int yearScreen() {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -72,8 +79,8 @@ int classScreen(char* yearName) {
 		cout << "Year: " << yearName << "\n\n";
 
 		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n";
-		cout << "1: Check all semesters\n";
+		cout << "0: Go back\n\n";
+		cout << "1: Check all semesters\n\n";
 		cout << "2: Create a new class\n";
 		char *s = new char[51];
 		int cnt = 3;
@@ -85,12 +92,14 @@ int classScreen(char* yearName) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -105,19 +114,21 @@ void createClassScreen(Class *& pClass, char * yearName) {
 int studentScreen(Student * pStudent, char* yearName, char* className) {
 	while(1) {
 		char *s = new char[51];
-		int cnt = 1, t = 0;
-	
 		cout << "Class: " << className << "\n\n";
 
 		Student * curStudent = pStudent;
 		while (curStudent != nullptr) {
-			cout << cnt++ << ' ' << curStudent -> studentID << ' ' << curStudent -> Name << ' ' << ((curStudent -> gender) ? "Female" : "Male") << ' ' << 
-					curStudent -> DOB.month << '/' << curStudent -> DOB.day << '/' << curStudent ->DOB.year << '\n';
+	        cout << setw(12) << left << curStudent->studentID;
+	        cout << setw(25) << left << curStudent->Name;
+	        cout << setw(8) << left << ((curStudent->gender) ? "FEMALE" : "MALE");
+	        cout << curStudent->DOB.day << "/" << curStudent->DOB.month << "/"  << curStudent->DOB.year << '\n';
 			curStudent = curStudent -> studentNext;
 		}	
 
+		cout << '\n';
+
 		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n";
+		cout << "0: Go back\n\n";
 		cout << "1: Create a new student\n";
 		cout << "2: Add students through .csv file\n";
 		cout << "3: View scoreboard of the class\n";
@@ -125,11 +136,14 @@ int studentScreen(Student * pStudent, char* yearName, char* className) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -141,9 +155,10 @@ void createStudentScreen(Student *& pStudent, char* yearName, char* className) {
 
 void createStudentCSVScreen(Student *& pStudent, char* yearName, char* className) {
 	cout << "Please drag the .csv file you wish to import into the directory CS162FinalProject\\Data\\File_csv\n";
-	cout << "Also, please input the name of the file: ";
+	cout << "Also, please input the name of the file (with the file name extension too, for example: 20CTT1_Student.csv) : ";
 	char *csvFile = new char[101];
 	cin >> csvFile;
+	system("cls");
 	addStudentCSV(pStudent, csvFile, yearName, className, 1);
 }
 
@@ -151,7 +166,7 @@ int semesterScreen(Semester *& pSemester) {
 	while(1) {
 		cout << "Please input your choice: \n\n";
 
-		cout << "0: Go back\n";
+		cout << "0: Go back\n\n";
 		cout << "1: Create a new semester\n";
 
 		int cnt = 2;
@@ -165,11 +180,14 @@ int semesterScreen(Semester *& pSemester) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }                     
 
@@ -199,11 +217,11 @@ int courseScreen(Course *& pCourse, char * semesterName) {
 		cout << "Semester: " << semesterName << "\n\n";
 
 		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n";
+		cout << "0: Go back\n\n";
 		cout << "1: Create a course registration session\n";
 		cout << "2: Add a new course\n";
 		cout << "3: View list of courses\n";
-		
+
 		int cnt = 4;
 		Course * pCur = pCourse;
 		while (pCur != nullptr) {
@@ -214,11 +232,14 @@ int courseScreen(Course *& pCourse, char * semesterName) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}	
 }
 
@@ -281,19 +302,25 @@ int editCourseScreen(Course *& curCourse) {
   		cout << '\n';
 
   		cout << "Please input your choice: \n\n";
-  		cout << "0: Go back\n";
+  		cout << "0: Go back\n\n";
+
   		cout << "1: Update this course information\n";
   		cout << "2: View list of students in this course\n";
-  		cout << "3: Delete this course\n";
+  		cout << "3: View the scoreboard of this course\n\n";
+
+  		cout << "4: Delete this course\n";
 
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -321,8 +348,8 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 
 		cout << "Please input your choice: \n\n";
 
-		cout << "0: Go back\n";   
-		cout << "1: Change password\n";
+		cout << "0: Logout\n";   
+		cout << "1: Change password\n\n";
 		int cnt = 2;
 		Semester * pCur = pYear -> pSemester;
 		while (pCur != nullptr) {
@@ -334,11 +361,14 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}				
 }
 
@@ -347,7 +377,7 @@ int enrollCourseScreen(char *semesterName) {
 		cout << "Semester: " << semesterName << "\n\n";
 
 		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n";
+		cout << "0: Go back\n\n";
 		cout << "1: Enroll in a course\n";
 		cout << "2: View list of your enrolled courses in this semester\n";
 		cout << "3: View your scoreboard in this semester\n";
@@ -355,12 +385,14 @@ int enrollCourseScreen(char *semesterName) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
@@ -387,7 +419,7 @@ int chooseCourse(Course *& pCourse) {
 	    }
 
 	    cout << "Please input your choice: \n\n";
-	    cout << "0: Go back\n";
+	    cout << "0: Go back\n\n";
 
 	    int cnt = 1;
 	    pCur = pCourse;
@@ -399,53 +431,61 @@ int chooseCourse(Course *& pCourse) {
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
-int viewAndDeleteCourseScreen(Course *& pCourse) {
+int viewAndDeleteCourseScreen(Course *& pCourse, char *semesterName) {
     while(1) {
-		viewEnrollList(pCourse);
+		viewEnrollList(pCourse, semesterName);
 		
 		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n";
+		cout << "0: Go back\n\n";
 		cout << "1: Unenroll a course\n";
 
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
-
-		return respond[0] - '0';
+		if (strlen(respond) == 1)
+			return respond[0] - '0';
+		else
+			return (respond[0] - '0') * 10 + (respond[1] - '0');
 	}
 }
 
-void deleteCourseScreen(Course *& pCourse, char * yearName, char * semesterName) {
-	cout << "Please input the ID of the course you want to delete: ";
+void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, char * semesterName, char * studentID) {
+	cout << "Please input the ID of the course you want to unenroll: ";
 	char * courseID = new char[101];
 	cin >> courseID;
-	Course * curCourse = pCourse;
-	while (curCourse) {
-		if (strcmp(curCourse -> id, courseID) == 0)
+	cout << '\n';
+	Course * tmpCourse = pCourse;
+	while (tmpCourse) {
+		if (strcmp(tmpCourse -> id, courseID) == 0)
 			break;
-		curCourse = curCourse -> courseNext;	
+		tmpCourse = tmpCourse -> courseNext;	
 	}
 
-	if (curCourse == nullptr) {
+	if (tmpCourse == nullptr) {
 		cout << "There are no courses that match the course ID you just input!\n";
 		system("pause");
 		system("cls");
 		return;
 	}
+
+	while (strcmp(pCourse -> id, courseID) != 0)
+		pCourse = pCourse -> courseNext;
+
 	
-	char tmp[11] = "";
-	removeCourseInEnrollList(pCourse, yearName, semesterName, courseID);
+	removeCourseInEnrollList(pCourse, pStudent, yearName, semesterName, courseID, studentID);
 }
