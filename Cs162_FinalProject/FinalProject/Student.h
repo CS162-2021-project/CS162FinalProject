@@ -6,9 +6,9 @@
 
 void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char* StudentID, char * yearName, char * semesterName, int add);
 
-void removeCourseInEnrollList(Course *& pCourse, Student*& pStudnet, char *yearName, char *semesterName, char* CourseID, char *studentID);
+void removeCourseInEnrollList(Course*& pEnrollCourse, char *yearName, char *semesterName, char* CourseID);
 
-void viewEnrollList(Course* pEnrollCourse, char * semesterName);
+void viewEnrollList(Course* pEnrollCourse);
 
 void viewScoreBoard(Course* pCourse, char* studentID); // task 26
 

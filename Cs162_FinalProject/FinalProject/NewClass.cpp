@@ -54,8 +54,7 @@ void createNewClass(Class*& pClass, char* yearName, char* className, int add) {
 	if (add)
 		fout.close();
 
-	char d[500] = "";
-	strcat(d,  "mkdir ");
+	char d[500] = "mkdir ";
 	strcat(d, dirD);
 	strcat(d, yearName);
 	strcat(d, "\\");

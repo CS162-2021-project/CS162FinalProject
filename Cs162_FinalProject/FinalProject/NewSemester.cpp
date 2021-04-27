@@ -6,6 +6,7 @@
 using namespace std;
 
 void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName, Date startDate, Date endDate, int add) {
+
 	Semester* cur = pSemester;
 
 	while (cur != nullptr) {
@@ -63,8 +64,7 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName,
 		fOut.close();
 	}
 
-	char d[500] = "";
-	strcat(d, "mkdir ");
+	char d[500] = "mkdir ";
 	strcat(d, dirD);
 	strcat(d, yearName);
 	strcat(d, "\\Semester\\");

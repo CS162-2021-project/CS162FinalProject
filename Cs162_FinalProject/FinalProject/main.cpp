@@ -10,13 +10,14 @@
 
 using namespace std;
 
-
 int main() {
 	//Input interface
 
 	Year* pYear = nullptr;
 	loadData(pYear);
 	system("cls");
+
+	cout << "Welcome to the HCMUS Course Registration system\n\n";
 
 	while(true) { // Basic screen, choose which role to login
 		int respondRole = chooseRoleScreen();
@@ -111,13 +112,11 @@ int main() {
 														updateCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
 	     											}
 	     											else if (respondEditCourse == 2) { // View list of students in this course
-	     												viewListOfStudentsInCourse(curCourse -> pStudent, curCourse -> id);
-	     											}
-	     											else if (respondEditCourse == 3) { // View the scoreboard of this course
 	     												// To be coded
 	     											}
-	     											else if (respondEditCourse == 4) { // Delete the current course
+	     											else if (respondEditCourse == 3) { // Delete the current course
 														deleteCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
+														break;
 	     											}
 	     											else 
 	     												cout << "Invalid, please try again\n\n";
@@ -264,11 +263,11 @@ int main() {
        						}	
        						else if (respondCourse == 2) { // View list of enrolled course
        							while(1) {
-	       							int respondViewAndDelete = viewAndDeleteCourseScreen(curStudent -> pCourse, curSemester -> SemesterName);
+	       							int respondViewAndDelete = viewAndDeleteCourseScreen(curStudent -> pCourse);
 	       							if (respondViewAndDelete == 0) 
 	       								break;
 									else
-										deleteCourseScreen(curSemester -> pCourse, curStudent, curYear -> YearName, curSemester -> SemesterName, curStudent -> studentID);
+										deleteCourseScreen(curStudent -> pCourse, curYear -> YearName, curSemester -> SemesterName);
 								}
        						}
        						else if (respondCourse == 3) { // View scoreboard in this semester

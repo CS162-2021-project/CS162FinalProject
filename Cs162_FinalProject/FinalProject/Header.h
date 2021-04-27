@@ -32,10 +32,18 @@ struct Student
 	bool **enrolledSession;
 	Course *pCourse = nullptr;
 	Student *studentNext = nullptr;
+	Student () {
+		enrolledSession = new bool* [8];
+		for (int i = 0; i < 8; i++ ) {
+			enrolledSession[i] = new bool[5];
+			for (int j = 0; j < 5; j++)
+				enrolledSession[i][j] = false;			
+		}
+	}
 };
 
 struct Scoreboard {
-	Student *stu;
+	Student stu;
 	float midterm;
 	float final;
 	float bonus;
@@ -75,7 +83,6 @@ struct Course {
 	char *id;
 	char *name;
 	char *lecturerName;
-	char *sSemester;
 	int numberOfCredits;
 	int maxStudent;
 	dayPerformed date;

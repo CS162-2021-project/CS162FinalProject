@@ -13,7 +13,6 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		curCourse = curCourse -> courseNext;
 	}
 
-
 	Student *curStudent = pStudent;
 	while (curStudent && strcmp(curStudent -> studentID, StudentID) != 0) {
 		curStudent = curStudent -> studentNext;
@@ -38,29 +37,19 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	else if (strcmp(curCourse -> date.d1, "SAT") == 0) d1 = 7;
 	s1 = (curCourse -> date.s1)[1] - '0';
 
-	if (strcmp(curCourse -> date.d2, "MON") == 0) d2 = 2;
-	else if (strcmp(curCourse -> date.d2, "TUE") == 0) d2 = 3;
-	else if (strcmp(curCourse -> date.d2, "WED") == 0) d2 = 4;
-	else if (strcmp(curCourse -> date.d2, "THU") == 0) d2 = 5;
-	else if (strcmp(curCourse -> date.d2, "FRI") == 0) d2 = 6;
-	else if (strcmp(curCourse -> date.d2, "SAT") == 0) d2 = 7;
+	if (strcmp(curCourse -> date.d1, "MON") == 0) d1 = 2;
+	else if (strcmp(curCourse -> date.d1, "TUE") == 0) d1 = 3;
+	else if (strcmp(curCourse -> date.d1, "WED") == 0) d1 = 4;
+	else if (strcmp(curCourse -> date.d1, "THU") == 0) d1 = 5;
+	else if (strcmp(curCourse -> date.d1, "FRI") == 0) d1 = 6;
+	else if (strcmp(curCourse -> date.d1, "SAT") == 0) d1 = 7;
 	s2 = (curCourse -> date.s2)[1] - '0';
 
 
-	if (!add) {
-		curStudent -> enrolledSession = new bool* [8];
-		for (int i = 0; i < 7; i++) {
-			curStudent -> enrolledSession[i] = new bool[5];
-			for (int j = 0; j < 4; j++)
-				curStudent -> enrolledSession[i][j] = false;
-		}	
-	}
-	else if (add == 1) {
-		if (curStudent -> enrolledSession[d1][s1] || curStudent -> enrolledSession[d2][s2]) {
-			cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
-			return;
-		}
-	}
+	if (curStudent -> enrolledSession[d1][s1] || curStudent -> enrolledSession[d2][s2]) {
+		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
+		return;
+	}                                   
 	
 	int sz_enroll = 0;
 	Course* enrollCourse = curStudent -> pCourse;
@@ -116,8 +105,6 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	strcpy(enrollCourse -> date.d2, curCourse -> date.d2);
 	enrollCourse -> date.s2 = new char[51]; 
 	strcpy(enrollCourse -> date.s2, curCourse -> date.s2);
-	enrollCourse -> sSemester = new char[51];
-	strcpy(enrollCourse -> sSemester, semesterName);
 
 	stuInCourse = curCourse -> pStudent;
 	if (stuInCourse == nullptr) {
@@ -140,19 +127,26 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	strcpy(stuInCourse -> sClass, curStudent -> sClass);
 	stuInCourse -> gender = curStudent -> gender;
 
-
 	cout << "Enroll successfully!\n\n";
-
+	system("pause");
+	system("cls");
 	if (add == 1) {
-		char dir[] = "C:\\Github\\CS162FinalProject\\Data\\";
-		char c[505] = "";
-		strcat(c, yearName);
-		strcat(c, "\\Semester\\");
-		strcat(c, semesterName);
-		strcat(c, "\\");
-		strcat(c, CourseID);
-		strcat(c, "\\Student.txt");
-		ofstream fOut(c);
+		char *dir = new char[505];
+		strcat(dir, "C:\\Github\\CS162FinalProject\\Data\\");
+		strcat(dir, yearName);
+		strcat(dir, "\\Semester\\");
+		strcat(dir, semesterName);
+		strcat(dir, "\\");
+		strcat(dir, CourseID);
+
+		char *mkdir = new char[505];
+		strcat(mkdir, "mkdir ");
+		strcat(mkdir, dir);
+
+		system(mkdir);
+		system("cls");
+		strcat(dir, "\\Student.txt");
+		ofstream fOut(dir);
 
 		stuInCourse = curCourse -> pStudent;
 		while (stuInCourse) {

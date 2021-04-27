@@ -36,11 +36,22 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
 	Student * cur = pStudent;
 	while (cur != nullptr) {
 		if  (strcmp(cur -> studentID, newStu -> studentID) == 0) {
-			cout << "Failed to add a new student!!\n";
-			cout << "The student you are about to add has already existed!!\n";
-			system("pause");
-			system("cls");
-			return;
+   			while (true) {
+   				cout << "A student with the same ID has already existed in this class\n";
+   				cout << "Do you want to replace him/her?\n";
+   				cout << "0: No\n";
+   				cout << "1: Yes\n";
+
+				cout << "Your input: ";
+				char *respond = new char[101]; cin >> respond;
+				system("cls");
+				if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+					cout << "Invalid, please try again\n\n";
+					continue;
+				}
+				if (respond[0] - '0' == 0) return;
+				else break;
+   			}
 		}
 		cur = cur -> studentNext;
 	}

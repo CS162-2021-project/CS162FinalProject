@@ -32,7 +32,7 @@ int enrollSemesterScreen(Year *& pYeawr, char * studentID);
 int enrollCourseScreen(char *semesterName);
 int chooseCourse(Course *& pCourse);
 
-int viewAndDeleteCourseScreen(Course *& pCourse, char * semesterName);
-void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, char * semesterName, char * studentID);
+int viewAndDeleteCourseScreen(Course *& pCourse);
+void deleteCourseScreen(Course *& pCourse, char * yearName, char * semesterName);
 
 #endif

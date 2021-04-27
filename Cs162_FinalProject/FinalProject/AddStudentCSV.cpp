@@ -68,12 +68,6 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 	while (fIn.getline(s, 505)) {
 		Student *newStu = new Student;
 	    inputStudentCSV(newStu, s);
-
-	    Student *tmp = pStudent;
-	    while (tmp && strcmp(tmp -> studentID, newStu -> studentID) != 0)
-	    	tmp = tmp -> studentNext;
-		if (tmp && strcmp(tmp -> studentID, newStu -> studentID) == 0)
-			continue;
 	
 		if (pStudent == nullptr)
 			pStudent = newStu;
@@ -82,6 +76,7 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 			while (pCur -> studentNext != nullptr)
 				pCur = pCur -> studentNext;
 			pCur -> studentNext = newStu;
+			pCur = pCur -> studentNext;
 		}
 	}
 
@@ -91,7 +86,4 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 			fOut << pCur -> studentID << ',' << pCur -> Name << ',' << pCur -> DOB.year << "-" << pCur -> DOB.month << "-" << pCur -> DOB.day << ',' << pCur -> gender << '\n';
 		pCur = pCur -> studentNext;
 	}
-	if (add)
-		fOut.close();
-	delete[] s;
 }
