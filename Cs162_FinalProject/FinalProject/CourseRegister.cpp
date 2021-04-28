@@ -10,7 +10,7 @@ void courseRegistration(Semester *& pSemester) {
 		while(true) {
 			cout << "WARNING!! There's already a course registration session in this semester.\n"; 
 			cout << "The registration session for this semester is from " << pSemester -> startReg.year << '/' << pSemester -> startReg.month << '/' << pSemester -> startReg.day << " to "
-			<< pSemester -> endReg.year << '/' << pSemester -> endReg.month << '/' << pSemester -> endReg.day << '\n';
+			<< pSemester -> endReg.year << '/' << pSemester -> endReg.month << '/' << pSemester -> endReg.day << "\n\n";
 			cout << "Do you want to overwrite it?\n";
 			cout << "1: Yes\n";
 			cout << "0: No\n";
@@ -18,12 +18,14 @@ void courseRegistration(Semester *& pSemester) {
 			cout << "Your input: ";
 			char *respond = new char[101]; cin >> respond;
 			system("cls");
-			if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+			if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
 				cout << "Invalid, please try again\n\n";
 				continue;
 			}
 			system("cls");
-			if (respond[0] - '0' == 0) return;
+			int x = respond[0] - '0';
+			delete[] respond;
+			if (x == 0) return;
 			else break;
 		}
 	}

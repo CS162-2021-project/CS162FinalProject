@@ -8,24 +8,26 @@ using namespace std;
 
 void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 	int t = 0, n = strlen(s);
-	char *cur = new char[50]; 
+	char *cur = new char[505]; 
 	int pos = 0;
 	for (int i = 0; i < n; i++) {
 		if (i == n - 1 || s[i] == ',') {
+			if (i == n - 1)
+				cur[pos++] = s[i];
 			cur[pos] = '\0';
 			if (t == 0) {
-				//Do nothing
+				newScr -> stu = new Student;
 			}
 			else if (t == 1) {
 				newScr -> stu -> studentID = new char[pos + 10];
-				for (int i = 0 ; i < pos; i++)
-					newScr -> stu -> studentID[i] = cur[i];
+				for (int j = 0 ; j < pos; j++)
+					newScr -> stu -> studentID[j] = cur[j];
 				newScr -> stu -> studentID[pos] = '\0';					
 			} 
 			else if (t == 2) {
 				newScr -> stu -> Name = new char[pos + 10];
-				for (int i = 0 ; i < pos; i++)
-					newScr -> stu -> Name[i] = cur[i];
+				for (int j = 0 ; j < pos; j++)
+					newScr -> stu -> Name[j] = cur[j];
 				newScr -> stu -> Name[pos] = '\0';
 			}
 			else if (t == 3) {
@@ -45,12 +47,14 @@ void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 		else 
 			cur[pos++] = s[i];
 	} 
+	delete[] cur;
 }
 
 
 void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, char* courseName) {
-	/* The course has already been chosen in courseName so we don't need this part
 	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+
+	/* The course has already been chosen in courseName so we don't need this part
 	char d[505] = "";
 	strcat(d, dirOut);
 	strcat(d, yearName);
@@ -94,8 +98,10 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 	strcat(ddd, "\\Semester\\");
 	strcat(ddd, semesterName);
 	strcat(ddd, "\\");
-	strcat(ddd, dc);
-	
+	strcat(ddd, courseName);
+	strcat(ddd, "\\");
+	strcat(ddd, "Scoreboard.txt");
+
 	ofstream fOut(ddd);
 
 	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\Scoreboard_csv\\" };
@@ -104,7 +110,15 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 	strcat(dd, courseName);
 	strcat(dd, ".csv");
 
+
 	ifstream fIn(dd);
+
+	if (!fIn.is_open()) {
+		cout << "Cannot locate the file\n";
+		system("pause");
+		system("cls");
+		return;
+	}
 
 	char* s = new char[505];
 	while (fIn.getline(s, 505)) {
@@ -118,12 +132,13 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 			while (pCur -> scoreboardNext != nullptr)
 				pCur = pCur -> scoreboardNext;
 			pCur -> scoreboardNext = newScr;
-			pCur = pCur -> scoreboardNext;
 		}
 	}
+
 	Scoreboard *pCur = pScore;
+	int cnt = 0;
 	while (pCur != nullptr) {
-		fOut << pCur -> stu -> studentID << ' ' << pCur -> stu -> Name << ' ' << pCur -> midterm << "-" << pCur -> final << "-" << pCur -> bonus << ' ' << pCur -> total << '\n';
+		fOut << ++cnt << ',' << pCur -> stu -> studentID << ',' << pCur -> stu -> Name << ',' << pCur -> midterm << ',' << pCur -> final << ',' << pCur -> bonus << ',' << pCur -> total << '\n';
 		pCur = pCur -> scoreboardNext;
 	}
 	fOut.close();

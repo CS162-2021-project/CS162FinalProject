@@ -25,7 +25,7 @@ void viewListOfCourse(Course * pCourse);
 
  // Delete Course
 
-void deleteCourse (Course*& pCourse, char* yearName, char* semesterName, char* courseID);
+void deleteCourse (Year * pYear, Course*& pCourse, char* yearName, char* semesterName, char* courseID);
 
 // Update Course
 

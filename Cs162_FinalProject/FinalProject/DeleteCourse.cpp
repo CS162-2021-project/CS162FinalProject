@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* courseID) {
+void deleteCourse(Year * pYear, Course*& pCourse, char* yearName, char* semesterName, char* courseID) {
 	while(1) {
 		cout << "Are you sure you want to delete this course?\n\n";
 		cout << "0: No\n";
@@ -16,14 +16,18 @@ void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
    		cout << "Your input: ";
    		char *respond = new char[101]; cin >> respond;
    		system("cls");
-   		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+   		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
    			cout << "Invalid, please try again\n\n";
    			continue;
    		}
-   		if (respond[0] - '0' == 0)
+   		int x = respond[0] - '0';
+   		delete[] respond;
+   		if (x)
    			return;
    		break;		
 	}
+
+ 	// Then we simply delete this course
 
     if (strcmp(pCourse->id, courseID) == 0) {
         Course* pDel = pCourse;
@@ -41,7 +45,6 @@ void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
             delete pDel;
         }
     }
-
 	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
     char c[500] = "";
     strcat(c, dirD);
@@ -63,4 +66,5 @@ void deleteCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 	    fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
     	pCur = pCur -> courseNext;
  	}
+ 	fout.close();
 }

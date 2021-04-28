@@ -1,29 +1,35 @@
-#include"Student.h"
-#include"Header.h"
-#include<iostream>
-#include<string.h>
+#include "Student.h"
+#include "Header.h"
+#include <iostream>
+#include <string.h>
+#include <iomanip>
 using namespace std;
 
 
 void viewScoreBoard(Course* pCourse, char* studentID) {
-	while (pCourse != nullptr) {
-		while (pCourse->pScoreboard != nullptr) {
-			if (strcmp(pCourse->pScoreboard->stu.studentID, studentID) == 0) {
-				cout << "Score of course :" << pCourse->id << endl;
-				cout << "Final score :";
-				cout << pCourse->pScoreboard->final << endl;
-				cout << "Midterm score :";
-				cout << pCourse->pScoreboard->midterm << endl;
-				cout << "Bonus :";
-				cout << pCourse->pScoreboard->bonus;
-				cout << "Total score :";
-				cout << pCourse->pScoreboard->total << endl;
+	cout << setw(15) << left << "Course";
+	cout << setw(20) << left << "Midterm's Mark";
+	cout << setw(20) << left << "Final's Mark";
+	cout << setw(20) << left << "Bonus's Mark";
+	cout << setw(20) << left << "Total's Mark" << '\n';
+	cout << '\n';
 
+	while (pCourse != nullptr) {
+		Scoreboard *pCur = pCourse -> pScoreboard; 
+		while (pCur != nullptr) {
+			if (strcmp(pCur -> stu -> studentID, studentID) == 0) {
+				cout << setw(15) << left << pCourse -> id;
+				cout << setw(20) << left << pCur -> midterm;
+				cout << setw(20) << left << pCur -> final;
+				cout << setw(20) << left << pCur -> bonus;
+				cout << setw(20) << left << pCur -> total << '\n';
 				break;
 			}
-			pCourse->pScoreboard = pCourse->pScoreboard->scoreboardNext;
+			pCur = pCur -> scoreboardNext;
 		}
-		pCourse = pCourse->courseNext;
+		pCourse = pCourse -> courseNext;
 	}
 
+	system("pause");
+	system("cls");
 }

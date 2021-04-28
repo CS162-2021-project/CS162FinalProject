@@ -16,11 +16,13 @@ void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char *yearNa
    		cout << "Your input: ";
    		char *respond = new char[101]; cin >> respond;
    		system("cls");
-   		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+   		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
    			cout << "Invalid, please try again\n\n";
    			continue;
    		}
-   		if (respond[0] - '0' == 0)
+   		int x = respond[0] - '0';
+   		delete[] respond;
+   		if (x)
    			return;
    		break;		
 	}

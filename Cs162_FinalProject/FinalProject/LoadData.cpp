@@ -103,7 +103,9 @@ void loadData(Year *& pYear) {
 
 				// Load some data to current student
 			}
+			studentIn.close();
  		}
+ 		classIn.close();
 
 		char dir_s[501] = "C:\\Github\\CS162FinalProject\\Data\\";
 		strcat(dir_s, yearName);
@@ -202,28 +204,26 @@ void loadData(Year *& pYear) {
 					while(strcmp(curCourse -> name, newCourse -> name) != 0)
 						curCourse = curCourse -> courseNext;
 	
-					// Load some data to current Course					
-					char dir_course[501] = "C:\\Github\\CS162FinalProject\\Data\\";
-					strcat(dir_course, yearName);
-					strcat(dir_course, "\\Semester\\");
-					strcat(dir_course, semesterName);
-					strcat(dir_course, "\\");
-					strcat(dir_course, newCourse -> id);
-					strcat(dir_course, "\\Student.txt");
+					// Load Students to current Course					
+					char dir_stu[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+					strcat(dir_stu, yearName);
+					strcat(dir_stu, "\\Semester\\");
+					strcat(dir_stu, semesterName);
+					strcat(dir_stu, "\\");
+					strcat(dir_stu, newCourse -> id);
+					strcat(dir_stu, "\\Student.txt");
 
-					ifstream fIn(dir_course);
+					ifstream fIn(dir_stu);
 					char *studentID = new char[101];
 					while (fIn >> studentID) {
 	    				Student * curStudent = nullptr;
     					Class * curClass = curYear -> pClass;
     					while (curClass) {
-    						Student * tmpStudent = curClass -> pStudent;
-    						while (tmpStudent) {
-    							if (strcmp(tmpStudent -> studentID, studentID) == 0) {
-    								curStudent = tmpStudent;
+    						curStudent = curClass -> pStudent;
+    						while (curStudent) {
+    							if (strcmp(curStudent -> studentID, studentID) == 0)
     								break;
-    							}	
-    							tmpStudent = tmpStudent -> studentNext;
+    							curStudent = curStudent -> studentNext;
     						}
     						if (curStudent != nullptr) break;
     						curClass = curClass -> classNext;
@@ -231,8 +231,38 @@ void loadData(Year *& pYear) {
 
     					enrollStudent(curSemester -> pCourse, curClass -> pStudent, newCourse -> id, studentID, yearName, semesterName, 0);
 					}
+					fIn.close();
+
+					// Load Scoreboard of current Course
+					char dir_sco[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+					strcat(dir_sco, yearName);
+					strcat(dir_sco, "\\Semester\\");
+					strcat(dir_sco, semesterName);
+					strcat(dir_sco, "\\");
+					strcat(dir_sco, newCourse -> id);
+					strcat(dir_sco, "\\Scoreboard.txt");					
+
+					fIn.open(dir_sco);
+					char* s = new char[505];
+					while (fIn.getline(s, 505)) {
+                		Scoreboard *newScr = new Scoreboard;
+                	    inputScoreboardCSV(newScr, s);
+                		if (curCourse -> pScoreboard == nullptr)
+                			curCourse -> pScoreboard = newScr;
+                		else {
+                			Scoreboard* pCur = curCourse -> pScoreboard;
+                			while (pCur -> scoreboardNext != nullptr)
+                				pCur = pCur -> scoreboardNext;
+                			pCur -> scoreboardNext = newScr;
+                		}						
+					}
+					delete[] s;
+					fIn.close();
 				}
 			}
-		}			
+			courseIn.close();
+		}
+		semesterIn.close();			
 	}
+	yearIn.close();
 }

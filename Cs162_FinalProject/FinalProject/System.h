@@ -35,4 +35,5 @@ int chooseCourse(Course *& pCourse);
 int viewAndDeleteCourseScreen(Course *& pCourse, char * semesterName);
 void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, char * semesterName, char * studentID);
 
+void viewOrAddScoreBoard(Course *curCourse, char * yearName, char * semesterName);
 #endif

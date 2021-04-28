@@ -8,7 +8,7 @@ using namespace std;
 void inputStudentCSV(Student *&newStu, char *s) {
 	int t = 0, n = strlen(s);
 	int pos = 0;
-	char *cur = new char[50];
+	char *cur = new char[505];
 	for (int i = 0; i < n; i++) {
 		if (i == n - 1 || s[i] == ',') {
 			if (t == 0) {
@@ -43,6 +43,7 @@ void inputStudentCSV(Student *&newStu, char *s) {
 		else 
 			cur[pos++] = s[i];
 	} 
+	delete[] cur;
 }
 
 void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, char* className, int add) {

@@ -27,8 +27,8 @@ int main() {
 			if (LogIn(1, userName)) { // Login as a Staff
 				while(true) { // Edit Year screen
 					int respondYear = yearScreen();
-					if (respondYear == 0) 
-						break;
+					if (respondYear == 0) // Logout 
+						return 0;
 					else if (respondYear == 1) { // Change password
 						changePassword(1, userName);
 					}	
@@ -36,7 +36,7 @@ int main() {
 						createYearScreen(pYear);	
 					}
 					else {
-						// Access that year, might need to add a function to change password
+						// Access that year
 						Year* curYear = pYear;
 						int cntYear = 3;
 						while (curYear != nullptr && cntYear < respondYear) {
@@ -114,10 +114,10 @@ int main() {
 	     												viewListOfStudentsInCourse(curCourse -> pStudent, curCourse -> id);
 	     											}
 	     											else if (respondEditCourse == 3) { // View the scoreboard of this course
-	     												// To be coded
+	     												viewOrAddScoreBoard(curCourse , curYear -> YearName, curSemester -> SemesterName);	
 	     											}
 	     											else if (respondEditCourse == 4) { // Delete the current course
-														deleteCourse(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
+														deleteCourse(curYear, curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
 	     											}
 	     											else 
 	     												cout << "Invalid, please try again\n\n";
@@ -154,8 +154,10 @@ int main() {
 										createStudentCSVScreen(curClass -> pStudent, curYear -> YearName, curClass -> ClassName);										
 									}
 									else if (respondStudent == 3) {	// View scoreboard of a class
-										// To be coded
+										viewScoreBoardOfClass(curClass -> pStudent, curYear -> pSemester);
 									}
+									else
+										cout << "Invalid, please try again\n\n";
 								}
 							}
 						}	
@@ -182,13 +184,11 @@ int main() {
     				Student * curStudent = nullptr;
 					Class * curClass = curYear -> pClass;
 					while (curClass) {
-						Student * tmpStudent = curClass -> pStudent;
-						while (tmpStudent) {
-							if (strcmp(tmpStudent -> studentID, studentID) == 0) {
-								curStudent = tmpStudent;
+						curStudent = curClass -> pStudent;
+						while (curStudent) {
+							if (strcmp(curStudent -> studentID, studentID) == 0)
 								break;
-							}	
-							tmpStudent = tmpStudent -> studentNext;
+							curStudent = curStudent -> studentNext;
 						}
 						if (curStudent != nullptr) break;
 						curClass = curClass -> classNext;
@@ -202,10 +202,9 @@ int main() {
 					RegisterDate.month = now -> tm_mon + 1;
 					RegisterDate.year = now -> tm_year + 1900;
 
-					    						
     				int respondSemester = enrollSemesterScreen(curYear, studentID);
-    				if (respondSemester == 0)
-    					break;
+    				if (respondSemester == 0) // Logout
+    					return 0;
     				else if (respondSemester == 1) {// Change password
     					changePassword(2, studentID);
     				}						
@@ -222,9 +221,9 @@ int main() {
        						continue; 
        					}
 
+
        					while (true) {
        						int respondCourse = enrollCourseScreen(curSemester -> SemesterName);
-
        						if (respondCourse == 0)
        							break;
        						else if (respondCourse == 1) { // Choose a course to enroll
@@ -272,8 +271,10 @@ int main() {
 								}
        						}
        						else if (respondCourse == 3) { // View scoreboard in this semester
-       							// To be coded
+       							viewScoreBoard(curSemester -> pCourse, curStudent -> studentID);
        						}
+       						else
+       							cout << "Invalid, please try again\n\n";
        					}
     				}
 				}

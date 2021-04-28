@@ -29,10 +29,13 @@ int chooseRoleScreen() {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete []respond;
+		return x;
 	}
 }
 
@@ -56,10 +59,13 @@ int yearScreen() {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -80,7 +86,7 @@ int classScreen(char* yearName) {
 
 		cout << "Please input your choice: \n\n";
 		cout << "0: Go back\n\n";
-		cout << "1: Check all semesters\n\n";
+		cout << "1: Check all semesters and edit courses\n\n";
 		cout << "2: Create a new class\n";
 		char *s = new char[51];
 		int cnt = 3;
@@ -96,10 +102,13 @@ int classScreen(char* yearName) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -140,10 +149,13 @@ int studentScreen(Student * pStudent, char* yearName, char* className) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -184,10 +196,13 @@ int semesterScreen(Semester *& pSemester) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }                     
 
@@ -236,10 +251,13 @@ int courseScreen(Course *& pCourse, char * semesterName) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}	
 }
 
@@ -317,10 +335,13 @@ int editCourseScreen(Course *& curCourse) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -328,16 +349,14 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 	Student *curStudent = nullptr;
 	Class * curClass = pYear -> pClass; 
 	while (curStudent == nullptr && curClass != nullptr) {
-		Student *tmpStudent = curClass -> pStudent;
-		while (tmpStudent != nullptr) {
-			if (strcmp(tmpStudent -> studentID, studentID) == 0) {
-				curStudent = tmpStudent;
+		curStudent = curClass -> pStudent;
+		while (curStudent != nullptr) {
+			if (strcmp(curStudent -> studentID, studentID) == 0)
 				break;
-			}			
-			tmpStudent = tmpStudent -> studentNext;
+			curStudent = curStudent -> studentNext;
 		}
 		curClass = curClass -> classNext;
-	}
+	}                                      
 
 
 	while(1) {
@@ -365,10 +384,13 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}				
 }
 
@@ -389,10 +411,13 @@ int enrollCourseScreen(char *semesterName) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -435,10 +460,13 @@ int chooseCourse(Course *& pCourse) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -457,10 +485,13 @@ int viewAndDeleteCourseScreen(Course *& pCourse, char *semesterName) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
+		int x;
 		if (strlen(respond) == 1)
-			return respond[0] - '0';
+			x = respond[0] - '0';
 		else
-			return (respond[0] - '0') * 10 + (respond[1] - '0');
+			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+		return x;	
 	}
 }
 
@@ -488,4 +519,80 @@ void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, c
 
 	
 	removeCourseInEnrollList(pCourse, pStudent, yearName, semesterName, courseID, studentID);
+}
+
+void viewOrAddScoreBoard(Course *curCourse, char * yearName, char * semesterName) {
+   	if (!curCourse -> pScoreboard) {
+   		while (1) {
+   			cout << "There is no scoreboard in this course yet.\n";
+   			cout << "Do you want to import a scoreboard into this semester?\n\n";
+
+   			cout << "Please input your choice: \n\n";
+
+   			cout << "0: No\n";
+   			cout << "1: Yes\n";
+
+      		cout << "Your input: ";
+      		char *respond = new char[101]; cin >> respond;
+      		system("cls");
+      		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+      			cout << "Invalid, please try again\n\n";
+      			continue;
+      		}
+
+      		int x;
+      		if (strlen(respond) == 1)
+      			x = respond[0] - '0';
+      		else
+      			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+			delete[] respond;
+      		if (x != 0 && x != 1) {
+      			cout << "Invalid, please try again\n\n";
+      			continue;
+      		}	
+      		if (x == 0) return;
+			cout << "Please drag the scoreboard of the course in the format " << curCourse -> id << ".csv file into the folder C:\\Github\\CS162FinalProject\\Data\\Scoreboard_csv\\ \n\n";
+			system("pause");
+			system("cls");
+   			addScoreBoardCSV(curCourse -> pScoreboard, yearName, semesterName, curCourse -> id);
+   			break;
+  		}
+  	}
+  	while (1) {
+		viewScoreboardOfCourse(curCourse);
+
+		cout << "Please input your choice: \n\n";
+
+		cout << "0: Go back\n";
+		cout << "1: Update a student result\n";
+		cout << "Your input: ";
+      	char *respond = new char[101]; cin >> respond;
+      	system("cls");
+      	if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+      		cout << "Invalid, please try again\n\n";
+      		continue;
+      	}
+
+      	int x;
+      	if (strlen(respond) == 1)
+      		x = respond[0] - '0';
+      	else
+      		x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		delete[] respond;
+
+		if (x != 0 && x != 1) {
+			cout << "Invalid, please try again\n\n";
+			continue;
+		}
+
+		if (x == 0)
+			break;
+		else if (x == 1) {
+			char *studentID = new char[51]; 
+			cout << "Please input the Student's ID: ";
+			cin >> studentID;
+			updateScoreBoardStudent(curCourse -> pScoreboard, yearName, semesterName, curCourse -> id, studentID);
+			delete[] studentID;
+		}	
+	}
 }

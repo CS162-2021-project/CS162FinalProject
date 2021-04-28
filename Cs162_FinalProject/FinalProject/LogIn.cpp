@@ -16,7 +16,7 @@ bool LogIn(int t, char *& UN){
 	else if (t == 2)
 		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");			
 	
-	while(!login || StillLog){
+	while(!login || StillLog) {
 		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << "?\n\n";
 		cout << "0: Go back\n";
 		cout << "1: Log in\n";
@@ -24,17 +24,14 @@ bool LogIn(int t, char *& UN){
 		cout << "Your input: ";
 		char *respond = new char[101]; cin >> respond;
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
 			cout << "Invalid, please try again\n\n";
 			continue;
 		}
 
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0] - '0';
 
+		delete[] respond;	
 		if (x != 0 && x != 1) {
 			cout << "Invalid, please try again\n\n";
 			continue;
