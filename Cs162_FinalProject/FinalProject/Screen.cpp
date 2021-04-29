@@ -44,7 +44,7 @@ int yearScreen() {
 		cout << "Please input your choice Staff: \n\n";
 		cout << "0: Logout\n";
 		cout << "1: Change password\n\n";
-		cout << "2: Create a new school year\n";
+		cout << "2: Create a new school year\n\n";
 		char *s = new char[51];
 		int cnt = 3;
 		ifstream fIn("C:\\Github\\CS162FinalProject\\Data\\Year.txt");
@@ -87,7 +87,7 @@ int classScreen(char* yearName) {
 		cout << "Please input your choice: \n\n";
 		cout << "0: Go back\n\n";
 		cout << "1: Check all semesters and edit courses\n\n";
-		cout << "2: Create a new class\n";
+		cout << "2: Create a new class\n\n";
 		char *s = new char[51];
 		int cnt = 3;
 		ifstream fIn(dir);
@@ -166,8 +166,8 @@ void createStudentScreen(Student *& pStudent, char* yearName, char* className) {
 }
 
 void createStudentCSVScreen(Student *& pStudent, char* yearName, char* className) {
-	cout << "Please drag the .csv file you wish to import into the directory CS162FinalProject\\Data\\File_csv\n";
-	cout << "Also, please input the name of the file (with the file name extension too, for example: 20CTT1_Student.csv) : ";
+	cout << "Please drag the .csv file you wish to import into the directory CS162FinalProject\\Data\\Class_csv\n";
+	cout << "Also, please input the name of the file (with the file name extension too, for example: 20CTT1_Student.csv): ";
 	char *csvFile = new char[101];
 	cin >> csvFile;
 	system("cls");
@@ -179,7 +179,7 @@ int semesterScreen(Semester *& pSemester) {
 		cout << "Please input your choice: \n\n";
 
 		cout << "0: Go back\n\n";
-		cout << "1: Create a new semester\n";
+		cout << "1: Create a new semester\n\n";
 
 		int cnt = 2;
 		Semester * pCur = pSemester;
@@ -235,7 +235,7 @@ int courseScreen(Course *& pCourse, char * semesterName) {
 		cout << "0: Go back\n\n";
 		cout << "1: Create a course registration session\n";
 		cout << "2: Add a new course\n";
-		cout << "3: View list of courses\n";
+		cout << "3: View list of courses\n\n";
 
 		int cnt = 4;
 		Course * pCur = pCourse;
@@ -284,8 +284,8 @@ void addCourseScreen(Course *& pCourse, char* yearName, char* semesterName) {
     cin >> newCourse->maxStudent;
     cin.get();
 
-    cout << " the session that the course will be performed (MON / TUE / WED / THU / FRI / SAT)" << endl;
-    cout << " and shift S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30))" << endl;
+    cout << "The session that the course will be performed (MON / TUE / WED / THU / FRI / SAT)" << endl;
+    cout << "and shift S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30))" << endl;
     cout << "Please input 2 sessions :" << endl;
     newCourse -> date.d1 = new char[5];
     newCourse -> date.s1 = new char[5];

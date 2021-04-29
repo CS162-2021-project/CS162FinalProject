@@ -13,7 +13,6 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		curCourse = curCourse -> courseNext;
 	}
 
-
 	Student *curStudent = pStudent;
 	while (curStudent && strcmp(curStudent -> studentID, StudentID) != 0) {
 		curStudent = curStudent -> studentNext;
@@ -46,22 +45,11 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	else if (strcmp(curCourse -> date.d2, "SAT") == 0) d2 = 7;
 	s2 = (curCourse -> date.s2)[1] - '0';
 
+	if (curStudent -> enrolledSession[d1][s1] || curStudent -> enrolledSession[d2][s2]) {
+		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
+		return;
+	}
 
-	if (!add) {
-		curStudent -> enrolledSession = new bool* [8];
-		for (int i = 0; i < 7; i++) {
-			curStudent -> enrolledSession[i] = new bool[5];
-			for (int j = 0; j < 4; j++)
-				curStudent -> enrolledSession[i][j] = false;
-		}	
-	}
-	else if (add == 1) {
-		if (curStudent -> enrolledSession[d1][s1] || curStudent -> enrolledSession[d2][s2]) {
-			cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
-			return;
-		}
-	}
-	
 	int sz_enroll = 0;
 	Course* enrollCourse = curStudent -> pCourse;
 	while (enrollCourse) {
@@ -146,6 +134,7 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	if (add == 1) {
 		char dir[] = "C:\\Github\\CS162FinalProject\\Data\\";
 		char c[505] = "";
+		strcat(c, dir);
 		strcat(c, yearName);
 		strcat(c, "\\Semester\\");
 		strcat(c, semesterName);

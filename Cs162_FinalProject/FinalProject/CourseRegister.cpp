@@ -1,11 +1,12 @@
 #include <iostream>
+#include <fstream>
 #include <string.h>
 #include "Course.h"
 #include "Header.h"
 
 using namespace std;
 
-void courseRegistration(Semester *& pSemester) {
+void courseRegistration(Semester *& pSemester, Semester * totSemester, char * yearName) {
 	if (pSemester -> startReg.year != -1) {
 		while(true) {
 			cout << "WARNING!! There's already a course registration session in this semester.\n"; 
@@ -42,4 +43,24 @@ void courseRegistration(Semester *& pSemester) {
 			<< pSemester -> endReg.year << '/' << pSemester -> endReg.month << '/' << pSemester -> endReg.day << '\n';
 	system("pause");
 	system("cls");
+
+	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char c[500] = "";
+	strcat(c, dirD);
+	strcat(c, yearName);
+	strcat(c, "\\Semester");
+	strcat(c, "\\Semester.txt");
+
+	ofstream fOut(c);
+
+	Semester * cur = totSemester;
+	while (cur != nullptr) {
+		fOut << cur -> SemesterName << ' ';
+		fOut << cur -> startDate.year << ' ' << cur -> startDate.month << ' ' << cur -> startDate.day << ' ';
+		fOut << cur -> endDate.year << ' ' << cur -> endDate.month << ' ' << cur -> endDate.day << ' ';
+		fOut << cur -> startReg.year << ' ' << cur -> startReg.month << ' ' << cur -> startReg.day << ' ';
+		fOut << cur -> endReg.year << ' ' << cur -> endReg.month << ' ' << cur -> endReg.day << '\n';
+		cur = cur -> semesterNext;
+	}
+	fOut.close();
 }

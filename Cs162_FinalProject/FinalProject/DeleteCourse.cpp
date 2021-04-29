@@ -22,7 +22,7 @@ void deleteCourse(Year * pYear, Course*& pCourse, char* yearName, char* semester
    		}
    		int x = respond[0] - '0';
    		delete[] respond;
-   		if (x)
+   		if (!x)
    			return;
    		break;		
 	}

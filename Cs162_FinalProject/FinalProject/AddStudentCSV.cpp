@@ -58,7 +58,7 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 
 	ofstream fOut(d);
 
-	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\File_csv\\" };
+	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\Class_csv\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
 	strcat(dd, CSV_Student_File);
@@ -76,6 +76,13 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 		if (tmp && strcmp(tmp -> studentID, newStu -> studentID) == 0)
 			continue;
 	
+		newStu -> enrolledSession = new bool* [8];
+		for (int i = 0; i < 7; i++) {
+			newStu -> enrolledSession[i] = new bool[5];
+			for (int j = 0; j < 4; j++)
+				newStu -> enrolledSession[i][j] = false;
+		}
+
 		if (pStudent == nullptr)
 			pStudent = newStu;
 		else {

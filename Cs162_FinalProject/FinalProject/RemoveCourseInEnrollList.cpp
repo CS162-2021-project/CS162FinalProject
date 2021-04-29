@@ -22,7 +22,7 @@ void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char *yearNa
    		}
    		int x = respond[0] - '0';
    		delete[] respond;
-   		if (x)
+   		if (!x)
    			return;
    		break;		
 	}
@@ -81,6 +81,7 @@ void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char *yearNa
 
 	char dir[] = "C:\\Github\\CS162FinalProject\\Data\\";
 	char c[505] = "";
+	strcat(c, dir);
 	strcat(c, yearName);
 	strcat(c, "\\Semester\\");
 	strcat(c, semesterName);

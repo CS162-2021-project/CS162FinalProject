@@ -13,7 +13,7 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName,
 
 // Create Course registration session
 
-void courseRegistration(Semester *& pSemester);
+void courseRegistration(Semester *& pSemester, Semester *totSemetser, char * yearName);
 
 // Create Course
 

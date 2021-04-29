@@ -80,7 +80,7 @@ int main() {
      										if (respondCourse == 0)
      											break;
      										else if (respondCourse == 1) { // Create a course registration session
-												courseRegistration(curSemester);												     											
+												courseRegistration(curSemester, curYear -> pSemester, curYear -> YearName);												     											
      										}	
      										else if (respondCourse == 2) { // Add a course to this semester
      											addCourseScreen(curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName);
@@ -118,6 +118,7 @@ int main() {
 	     											}
 	     											else if (respondEditCourse == 4) { // Delete the current course
 														deleteCourse(curYear, curSemester -> pCourse, curYear -> YearName, curSemester -> SemesterName, curCourse -> id);
+														break;
 	     											}
 	     											else 
 	     												cout << "Invalid, please try again\n\n";
@@ -171,7 +172,7 @@ int main() {
 				while (true) {  // Choose a semester to enroll
     				char * yearName = new char[51];
     				int tmp = (studentID[0] - '0') * 10 + studentID[1] - '0';
-    				char tmp_c[40];
+    				char tmp_c[40] = "";
     				strcat(yearName, "20");
     				strcat(yearName, itoa(tmp, tmp_c, 10));
     				strcat(yearName, "-20");

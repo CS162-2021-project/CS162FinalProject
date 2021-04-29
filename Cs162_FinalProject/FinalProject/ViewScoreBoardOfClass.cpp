@@ -19,8 +19,8 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester) {
 		break;
 	}
 	system("cls");
-    cout << setw(18) << left << "Student's ID: ";
-    cout << setw(30) << left << "Student's Name: ";
+    cout << setw(18) << left << "Student's ID";
+    cout << setw(30) << left << "Student's Name";
 
     Semester *curSem = pSemester;
     while (curSem) {

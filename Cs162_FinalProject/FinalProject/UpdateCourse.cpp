@@ -40,17 +40,17 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		return;
 
     if (x == 1) {
-        cout << "New course's ID:";
+        cout << "New course's ID: ";
         cin.ignore(1001, '\n');
         cin.get(pCur->id, 101, '\n');
     }
     else if (x == 2) {
-        cout << "New course's name:";
+        cout << "New course's name: ";
         cin.ignore(1001, '\n');
         cin.get(pCur->name, 101, '\n');
     }
     else if (x == 3) {
-        cout << "New lecturer's name:";
+        cout << "New lecturer's name: ";
         cin.ignore(1001, '\n');
         cin.get(pCur->lecturerName, 101, '\n');
     }

@@ -58,6 +58,12 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
 		fOut.open(d);
 
     newStu -> sClass = className;
+	newStu -> enrolledSession = new bool* [8];
+	for (int i = 0; i < 7; i++) {
+		newStu -> enrolledSession[i] = new bool[5];
+		for (int j = 0; j < 4; j++)
+			newStu -> enrolledSession[i][j] = false;
+	}
 
 	if (pStudent == nullptr) {
 		pStudent = newStu;
