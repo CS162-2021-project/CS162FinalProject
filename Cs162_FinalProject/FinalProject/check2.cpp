@@ -1,15 +1,18 @@
 #include <iostream>
+#include <string.h>
 #include "Header.h"
 #include "Staff.h"
 
-int daylacheck (Student *pStudent) {
-    int countM = 0, countF = 0;
-    while (pStudent) {
-        if (pStudent->gender == 0)
-            countM++;
-        else
-            countF++;
-        pStudent = pStudent->studentNext;
+bool isInClass (Class pClass, Student *pStudent, char stuID) {
+    while (pClass) {
+        while (pClass->pStudent) {
+            if (strcmp(pClass->pStudent->studentID, stuID) == 0) {
+                return true;
+            }
+            else
+                pClass->pStudent = pClass->pStudent->studentNext;
+        }
+        pClass = pClass->classNext;
     }
-    return count;
+    return false;
 }
