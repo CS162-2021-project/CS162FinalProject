@@ -1,6 +1,7 @@
-void daylacheck (int x, int a, int b, int &result) {
+void daylacheck (int x, int a, int b) {
     if (x == 1) {
-        result = a + b;
-        cout << result;
+        cout << a + b;
+    } else if (x == 2) {
+        cout << a - b;
     }
 }
