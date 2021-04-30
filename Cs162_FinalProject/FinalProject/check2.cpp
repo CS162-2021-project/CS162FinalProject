@@ -1,7 +1,12 @@
-void daylacheck (int x, int a, int b) {
-    if (x == 1) {
-        cout << a + b;
-    } else if (x == 2) {
-        cout << a - b;
+#include <iostream>
+#include "Header.h"
+#include "Staff.h"
+
+int daylacheck (Student *pStudent) {
+    int count = 0;
+    while (pStudent) {
+        count++;
+        pStudent = pStudent->studentNext;
     }
+    return count;
 }
