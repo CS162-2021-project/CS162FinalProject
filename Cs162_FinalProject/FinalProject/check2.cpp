@@ -3,9 +3,12 @@
 #include "Staff.h"
 
 int daylacheck (Student *pStudent) {
-    int count = 0;
+    int countM = 0, countF = 0;
     while (pStudent) {
-        count++;
+        if (pStudent->gender == 0)
+            countM++;
+        else
+            countF++;
         pStudent = pStudent->studentNext;
     }
     return count;
