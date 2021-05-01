@@ -3,14 +3,12 @@
 #include "Header.h"
 #include "Staff.h"
 
-bool isValiable (Course *pCourse) {
-    int c = 0;
-    while (pCourse->pStudent) {
-        c++;
-        pCourse->pStudent = pCourse->pStudent->studentNext;
+bool isYounger (Student *pStudent, char *stuID) {
+    while (pStudent && pStudent->studentID != stuID) {
+        pStudent = pStudent->studentNext;
     }
-    if (c > pCourse->maxStudent) {
-        return false;
+    if (pStudent->DOB.year > 2002) {
+        return true;
     }
-    return true;
+    return false;
 }
