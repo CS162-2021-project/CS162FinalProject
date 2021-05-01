@@ -3,6 +3,6 @@
 #include "Header.h"
 #include "Staff.h"
 
-int count (int a, int b) {
-    return a-b;
+float count (float a, float b) {
+    return a/b;
 }
