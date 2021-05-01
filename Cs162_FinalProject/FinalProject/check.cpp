@@ -3,13 +3,13 @@
 #include "Header.h"
 #include "Staff.h"
 
-int findHighestMidScore (Scoreboard * & pScr){
-    int max = 0;
+int findLowestMidScore (Scoreboard * & pScr){
+    int min = 100000;
     while (pScr) {
-        if (pScr->midterm > max) {
-            max = pScr->midterm;
+        if (pScr->midterm < min) {
+            min = pScr->midterm;
         }
         pScr = pScr->scoreboardNext;
     }
-    return max;
+    return min;
 }
