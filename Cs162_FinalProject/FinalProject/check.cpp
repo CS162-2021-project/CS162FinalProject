@@ -3,7 +3,7 @@
 #include "Header.h"
 #include "Staff.h"
 
-int findHighestFinalScore (Scoreboard * & pScr){
+void findBestStudent (Scoreboard * & pScr){
     int max = 0;
     while (pScr) {
         if (pScr->midterm > max) {
@@ -11,5 +11,5 @@ int findHighestFinalScore (Scoreboard * & pScr){
         }
         pScr = pScr->scoreboardNext;
     }
-    return max;
+    cout << "the best student is " << pScr->stu->Name << endl;
 }
