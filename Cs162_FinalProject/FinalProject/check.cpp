@@ -3,6 +3,14 @@
 #include "Header.h"
 #include "Staff.h"
 
-float count (float a, float b) {
-    return a^b - b/a;
+bool isValiable (Course *pCourse) {
+    int c = 0;
+    while (pCourse->pStudent) {
+        c++;
+        pCourse->pStudent = pCourse->pStudent->studentNext;
+    }
+    if (c > pCourse->maxStudent) {
+        return false;
+    }
+    return true;
 }
