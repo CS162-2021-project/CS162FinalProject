@@ -17,6 +17,8 @@ int main() {
 	Year* pYear = nullptr;
 	loadData(pYear);
 	system("cls");
+	time_t cur_t = time(0);
+	tm* now = localtime(&cur_t);
 
 	while(true) { // Basic screen, choose which role to login
 		int respondRole = chooseRoleScreen();
@@ -169,39 +171,38 @@ int main() {
 		else if (respondRole == 2) {
 			char * studentID;
 			if (LogIn(2, studentID)) { // Login as a Student
+
+   				char * yearName = new char[51];
+   				int tmp = (studentID[0] - '0') * 10 + studentID[1] - '0';
+   				char tmp_c[40] = "";
+   				strcat(yearName, "20");
+   				strcat(yearName, itoa(tmp, tmp_c, 10));
+   				strcat(yearName, "-20");
+   				strcat(yearName, itoa(tmp + 1, tmp_c, 10));
+
+   				Year * curYear = pYear;
+   				while (curYear && strcmp(curYear -> YearName, yearName) != 0)
+   					curYear = curYear -> yearNext;
+
+   				Student * curStudent = nullptr;
+   				Class * curClass = curYear -> pClass;
+   				while (curClass) {
+   					curStudent = curClass -> pStudent;
+   					while (curStudent) {
+   						if (strcmp(curStudent -> studentID, studentID) == 0)
+   							break;
+   						curStudent = curStudent -> studentNext;
+   					}
+   					if (curStudent != nullptr) break;
+   					curClass = curClass -> classNext;
+   				}
+
+   				Date RegisterDate;
+   				RegisterDate.day = now -> tm_mday;
+   				RegisterDate.month = now -> tm_mon + 1;
+   				RegisterDate.year = now -> tm_year + 1900;
+
 				while (true) {  // Choose a semester to enroll
-    				char * yearName = new char[51];
-    				int tmp = (studentID[0] - '0') * 10 + studentID[1] - '0';
-    				char tmp_c[40] = "";
-    				strcat(yearName, "20");
-    				strcat(yearName, itoa(tmp, tmp_c, 10));
-    				strcat(yearName, "-20");
-    				strcat(yearName, itoa(tmp + 1, tmp_c, 10));
-
-    				Year * curYear = pYear;
-    				while (curYear && strcmp(curYear -> YearName, yearName) != 0)
-    					curYear = curYear -> yearNext;
-
-    				Student * curStudent = nullptr;
-					Class * curClass = curYear -> pClass;
-					while (curClass) {
-						curStudent = curClass -> pStudent;
-						while (curStudent) {
-							if (strcmp(curStudent -> studentID, studentID) == 0)
-								break;
-							curStudent = curStudent -> studentNext;
-						}
-						if (curStudent != nullptr) break;
-						curClass = curClass -> classNext;
-					}
-
-
-					time_t cur_t = time(0);
-					tm* now = localtime(&cur_t);
-					Date RegisterDate;
-					RegisterDate.day = now -> tm_mday;
-					RegisterDate.month = now -> tm_mon + 1;
-					RegisterDate.year = now -> tm_year + 1900;
 
     				int respondSemester = enrollSemesterScreen(curYear, studentID);
     				if (respondSemester == 0) // Logout
